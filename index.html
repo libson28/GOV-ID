@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOV ID - Bibliothèque Numérique du Gouvernement du Sénégal</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00A651',
+                        secondary: '#FFCD00',
+                        accent: '#E31E24'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" id="sidebarOverlay"></div>
+    
+    <header class="bg-white shadow-sm border-b border-gray-200 top-0 sticky z-50">
+        <div class="px-6 py-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                <div class="flex items-center space-x-3 w-full sm:w-auto">
+                    <div class="flex items-center space-x-2">
+                        <div
+                            class="w-10 h-10 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">G</span>
+                        </div>
+                        <h1 class="text-2xl font-['Pacifico'] text-gray-800">GOV ID</h1>
+                    </div>
+                    <div class="hidden lg:block text-sm text-gray-600 ml-6">
+                        Bibliothèque Numérique du Gouvernement du Sénégal
+                    </div>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+                    <button
+                        class="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:border-primary hover:text-primary transition-colors !rounded-button whitespace-nowrap w-full sm:w-auto text-center">
+                       <a href="login.html"> Connexion</a>
+                    </button>
+                    <button
+                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors !rounded-button whitespace-nowrap w-full sm:w-auto text-center">
+                        <a href="login.html"> S'inscrire</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </header>
+    <div class="w-full">
+        <main class="w-full">
+            <div class="relative overflow-hidden bg-gradient-to-br from-white via-green-50/30 to-yellow-50/50 min-h-screen bg-cover bg-center bg-no-repeat"
+                style="background-image: url('https://readdy.ai/api/search-image?query=Modern%20government%20building%20of%20Senegal%20with%20African%20architecture%2C%20national%20flag%20colors%20green%20yellow%20red%2C%20official%20administrative%20building%2C%20bright%20natural%20lighting%2C%20professional%20photography%2C%20elegant%20facade%20with%20traditional%20Senegalese%20architectural%20elements%2C%20clear%20blue%20sky%20background%2C%20wide%20angle%20view&width=1920&height=1080&seq=gov_senegal_hero&orientation=landscape');">
+                <div class="absolute inset-0 bg-white/80"></div>
+                <div class="relative z-10">
+                    <section class="px-6 py-8 lg:py-24">
+                        <div class="max-w-7xl mx-auto">
+                            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                                <div class="text-left pb-">
+                                    <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 mb-6">
+                                        Bibliothèque Numérique du
+                                        <span class="text-primary">Gouvernement</span>
+                                        <span class="text-secondary">du</span>
+                                        <span class="text-accent">Sénégal</span>
+                                    </h1>
+                                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                                        Accédez facilement à tous les documents officiels, décrets, projets de loi et
+                                        archives historiques du gouvernement sénégalais dans une plateforme moderne et
+                                        intuitive.
+                                    </p>
+                                    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                                        <button
+                                            class="px-8 py-4 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center space-x-3 text-lg font-semibold !rounded-button whitespace-nowrap">
+                                            <div class="w-6 h-6 flex items-center justify-center">
+                                                <i class="ri-search-line"></i>
+                                            </div>
+                                            <span>Commencer la recherche</span>
+                                        </button>
+                                        <button
+                                            class="px-8 py-4 bg-white border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center justify-center space-x-3 text-lg font-semibold !rounded-button whitespace-nowrap">
+                                            <div class="w-6 h-6 flex items-center justify-center">
+                                                <i class="ri-play-circle-line"></i>
+                                            </div>
+                                            <span>Découvrir</span>
+                                        </button>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-6 text-center">
+                                        <div>
+                                            <div class="text-3xl font-bold text-primary mb-2">50K+</div>
+                                            <div class="text-sm text-gray-600">Documents</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-3xl font-bold text-secondary mb-2">25</div>
+                                            <div class="text-sm text-gray-600">Ministères</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-3xl font-bold text-accent mb-2">1960</div>
+                                            <div class="text-sm text-gray-600">Depuis</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="hidden lg:block">
+                                    <div class="relative">
+                                        <div
+                                            class="w-full h-96 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-2xl overflow-hidden">
+                                            <img src="https://readdy.ai/api/search-image?query=Senegalese%20government%20official%20documents%20and%20legal%20papers%20on%20elegant%20desk%2C%20African%20administrative%20office%20setting%20with%20traditional%20elements%2C%20professional%20government%20workplace%2C%20natural%20lighting%2C%20books%20and%20legal%20documents%2C%20modern%20office%20environment%20with%20Senegalese%20cultural%20touches&width=600&height=400&seq=gov_office_workspace&orientation=landscape"
+                                                class="w-full h-full object-cover object-top"
+                                                alt="Bureau gouvernemental sénégalais">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="px-6 py-16 bg-white">
+                        <div class="max-w-7xl mx-auto">
+                            <div class="text-center mb-16">
+                                <h2 class="text-4xl font-bold text-gray-900 mb-4">Nos Services</h2>
+                                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                                    Découvrez nos différentes sections pour accéder rapidement aux informations
+                                    gouvernementales dont vous avez besoin.
+                                </p>
+                            </div>
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                <div
+                                    class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-primary hover:shadow-xl transition-all duration-300 group">
+                                    <div
+                                        class="w-16 h-16 bg-gradient-to-br from-primary to-green-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-government-line text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Décrets & Arrêtés</h3>
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        Consultez tous les décrets présidentiels, arrêtés ministériels et textes
+                                        réglementaires en vigueur au Sénégal.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-primary font-medium">15,247 documents</span>
+                                        <div
+                                            class="w-8 h-8 flex items-center justify-center text-primary group-hover:translate-x-2 transition-transform">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-secondary hover:shadow-xl transition-all duration-300 group">
+                                    <div
+                                        class="w-16 h-16 bg-gradient-to-br from-secondary to-yellow-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-file-text-line text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Projets de Loi</h3>
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        Accédez aux projets de loi en cours d'examen, aux textes adoptés et aux débats
+                                        parlementaires.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-yellow-700 font-medium">3,892 documents</span>
+                                        <div
+                                            class="w-8 h-8 flex items-center justify-center text-secondary group-hover:translate-x-2 transition-transform">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-accent hover:shadow-xl transition-all duration-300 group">
+                                    <div
+                                        class="w-16 h-16 bg-gradient-to-br from-accent to-red-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-book-line text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Constitution & Lois</h3>
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        Consultez la Constitution du Sénégal, les codes juridiques et les textes
+                                        fondamentaux de la République.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-accent font-medium">847 documents</span>
+                                        <div
+                                            class="w-8 h-8 flex items-center justify-center text-accent group-hover:translate-x-2 transition-transform">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-primary hover:shadow-xl transition-all duration-300 group">
+                                    <div
+                                        class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-archive-line text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Archives Historiques</h3>
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        Explorez les archives nationales depuis l'indépendance du Sénégal et les
+                                        documents historiques importants.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-blue-600 font-medium">28,156 documents</span>
+                                        <div
+                                            class="w-8 h-8 flex items-center justify-center text-blue-600 group-hover:translate-x-2 transition-transform">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-purple-500 hover:shadow-xl transition-all duration-300 group">
+                                    <div
+                                        class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-money-dollar-circle-line text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Budget & Finances</h3>
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        Accédez aux lois de finances, budgets nationaux et rapports économiques du
+                                        gouvernement sénégalais.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-purple-600 font-medium">2,134 documents</span>
+                                        <div
+                                            class="w-8 h-8 flex items-center justify-center text-purple-600 group-hover:translate-x-2 transition-transform">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white border-2 border-gray-200 rounded-2xl p-8 hover:border-indigo-500 hover:shadow-xl transition-all duration-300 group">
+                                    <div
+                                        class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                                        <div class="w-8 h-8 flex items-center justify-center">
+                                            <i class="ri-shield-check-line text-white text-2xl"></i>
+                                        </div>
+                                    </div>
+                                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Sécurité & Défense</h3>
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        Consultez les textes relatifs à la sécurité nationale, à la défense et aux
+                                        forces armées sénégalaises.
+                                    </p>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-indigo-600 font-medium">1,892 documents</span>
+                                        <div
+                                            class="w-8 h-8 flex items-center justify-center text-indigo-600 group-hover:translate-x-2 transition-transform">
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="px-6 py-16 bg-gradient-to-r from-green-50 to-yellow-50">
+                        <div class="max-w-7xl mx-auto">
+                            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                                <div>
+                                    <img src="https://readdy.ai/api/search-image?query=Traditional%20Senegalese%20courthouse%20or%20justice%20building%20with%20colonial%20and%20modern%20African%20architecture%2C%20national%20symbols%2C%20legal%20documents%20and%20constitution%20books%2C%20professional%20government%20setting%2C%20bright%20natural%20lighting%2C%20wide%20angle%20photography&width=600&height=400&seq=senegal_justice_building&orientation=landscape"
+                                        class="w-full h-80 object-cover object-top rounded-2xl shadow-xl"
+                                        alt="Palais de Justice du Sénégal">
+                                </div>
+                                <div>
+                                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
+                                        Recherche Avancée et <span class="text-primary">Intelligence Artificielle</span>
+                                    </h2>
+                                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                                        Notre assistant IA vous aide à trouver rapidement les documents pertinents grâce
+                                        à une recherche sémantique avancée et des résumés automatiques.
+                                    </p>
+                                    <ul class="space-y-4 mb-8">
+                                        <li class="flex items-start space-x-3">
+                                            <div
+                                                class="w-6 h-6 bg-primary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                                <div class="w-3 h-3 flex items-center justify-center">
+                                                    <i class="ri-check-line text-white text-sm"></i>
+                                                </div>
+                                            </div>
+                                            <span class="text-gray-700">Recherche instantanée dans plus de 50 000
+                                                documents</span>
+                                        </li>
+                                        <li class="flex items-start space-x-3">
+                                            <div
+                                                class="w-6 h-6 bg-secondary rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                                <div class="w-3 h-3 flex items-center justify-center">
+                                                    <i class="ri-check-line text-gray-800 text-sm"></i>
+                                                </div>
+                                            </div>
+                                            <span class="text-gray-700">Résumés automatiques générés par IA</span>
+                                        </li>
+                                        <li class="flex items-start space-x-3">
+                                            <div
+                                                class="w-6 h-6 bg-accent rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                                <div class="w-3 h-3 flex items-center justify-center">
+                                                    <i class="ri-check-line text-white text-sm"></i>
+                                                </div>
+                                            </div>
+                                            <span class="text-gray-700">Filtres avancés par ministère et date</span>
+                                        </li>
+                                    </ul>
+                                    <button
+                                        class="px-8 py-4 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors flex items-center space-x-3 text-lg font-semibold !rounded-button whitespace-nowrap">
+                                        <div class="w-6 h-6 flex items-center justify-center">
+                                            <i class="ri-robot-line"></i>
+                                        </div>
+                                        <span>Essayer l'assistant IA</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="px-6 py-16 bg-white">
+                        <div class="max-w-7xl mx-auto">
+                            <div class="text-center mb-16">
+                                <h2 class="text-4xl font-bold text-gray-900 mb-4">Documents les Plus Consultés</h2>
+                                <p class="text-xl text-gray-600">
+                                    Les textes juridiques et administratifs les plus recherchés par nos utilisateurs.
+                                </p>
+                            </div>
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <div
+                                    class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div
+                                            class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                            <div class="w-6 h-6 flex items-center justify-center">
+                                                <i class="ri-government-line text-primary"></i>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full">Décret</span>
+                                    </div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Code du Travail 2024</h3>
+                                    <p class="text-sm text-gray-600 mb-4">Version mise à jour du code du travail
+                                        sénégalais avec les dernières modifications...</p>
+                                    <div class="flex items-center justify-between text-xs text-gray-500">
+                                        <span>5,247 vues</span>
+                                        <span>Mis à jour le 15 jan 2024</span>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div
+                                            class="w-12 h-12 bg-secondary/20 rounded-lg flex items-center justify-center">
+                                            <div class="w-6 h-6 flex items-center justify-center">
+                                                <i class="ri-file-text-line text-yellow-700"></i>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="px-3 py-1 bg-secondary/20 text-yellow-700 text-xs rounded-full">Loi</span>
+                                    </div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Loi de Finances 2024</h3>
+                                    <p class="text-sm text-gray-600 mb-4">Budget national pour l'exercice 2024 avec
+                                        répartition par secteur et ministère...</p>
+                                    <div class="flex items-center justify-between text-xs text-gray-500">
+                                        <span>4,182 vues</span>
+                                        <span>Adopté le 28 déc 2023</span>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                                            <div class="w-6 h-6 flex items-center justify-center">
+                                                <i class="ri-book-line text-accent"></i>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="px-3 py-1 bg-accent/10 text-accent text-xs rounded-full">Constitution</span>
+                                    </div>
+                                    <h3 class="font-semibold text-gray-900 mb-2">Constitution du Sénégal</h3>
+                                    <p class="text-sm text-gray-600 mb-4">Loi fondamentale de la République du Sénégal
+                                        dans sa version consolidée...</p>
+                                    <div class="flex items-center justify-between text-xs text-gray-500">
+                                        <span>3,891 vues</span>
+                                        <span>Version 2024</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section
+                        class="px-6 py-16 bg-gradient-to-br from-gray-900 via-primary to-secondary text-white relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/20"></div>
+                        <div class="max-w-7xl mx-auto relative z-10">
+                            <div class="text-center">
+                                <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                                    Prêt à Explorer les Archives du <span class="text-yellow-300">Sénégal</span> ?
+                                </h2>
+                                <p class="text-xl text-gray-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+                                    Rejoignez des milliers d'utilisateurs qui font confiance à GOV ID pour leurs
+                                    recherches juridiques et administratives.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                                    <button
+                                        class="px-8 py-4 bg-white text-primary rounded-lg hover:bg-gray-100 transition-colors flex items-center justify-center space-x-3 text-lg font-semibold !rounded-button whitespace-nowrap">
+                                        <div class="w-6 h-6 flex items-center justify-center">
+                                            <i class="ri-search-2-line"></i>
+                                        </div>
+                                        <span>Commencer maintenant</span>
+                                    </button>
+                                    <button
+                                        class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg hover:bg-white hover:text-primary transition-colors flex items-center justify-center space-x-3 text-lg font-semibold !rounded-button whitespace-nowrap">
+                                        <div class="w-6 h-6 flex items-center justify-center">
+                                            <i class="ri-phone-line"></i>
+                                        </div>
+                                        <span>Nous contacter</span>
+                                    </button>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                                    <div>
+                                        <div class="text-4xl font-bold text-yellow-300 mb-2">24/7</div>
+                                        <div class="text-gray-200">Disponibilité</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-4xl font-bold text-yellow-300 mb-2">100%</div>
+                                        <div class="text-gray-200">Officiel</div>
+                                    </div>
+                                    <div>
+                                        <div class="text-4xl font-bold text-yellow-300 mb-2">Gratuit</div>
+                                        <div class="text-gray-200">Accès libre</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer class="bg-gray-900 text-white ">
+        <div class="px-6 py-12">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="col-span-1 md:col-span-2">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg flex items-center justify-center">
+                                <span class="text-white font-bold text-lg">G</span>
+                            </div>
+                            <h3 class="text-2xl font-['Pacifico']">GOV ID</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4">Bibliothèque numérique officielle du Gouvernement de la République du Sénégal. Accédez facilement aux documents officiels, décrets, projets de loi et archives gouvernementales.</p>
+                        <div class="flex items-center space-x-2 text-sm text-gray-400">
+                            <div class="w-4 h-4 flex items-center justify-center">
+                                <i class="ri-government-line"></i>
+                            </div>
+                            <span>Ministère des Affaires Publiques du Sénégal</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Liens rapides</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><a href="#" class="hover:text-primary transition-colors">Accueil</a></li>
+                            <li><a href="#" class="hover:text-primary transition-colors">Recherche avancée</a></li>
+                            <li><a href="#" class="hover:text-primary transition-colors">Archives</a></li>
+                            <li><a href="#" class="hover:text-primary transition-colors">Aide</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-center space-x-2">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-phone-line"></i>
+                                </div>
+                                <span>+221 33 889 50 50</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-mail-line"></i>
+                                </div>
+                                <span>contact@govid.sn</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-map-pin-line"></i>
+                                </div>
+                                <span>Dakar, Sénégal</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 mt-8 pt-8 flex items-center justify-between">
+                    <p class="text-gray-400 text-sm">© 2026 GOV ID - Gouvernement de la République du Sénégal. Tous droits réservés.</p>
+                    <div class="flex items-center space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors text-sm">Politique de confidentialité</a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors text-sm">Conditions d'utilisation</a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors text-sm">Mentions légales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+   
+    <script id="sidebarScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            // no mobile menu toggle needed here
+        });
+        function searchFromHistory(query) {
+            document.getElementById('searchInput').value = query;
+            performSearch(query);
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+        function removeFromHistory(button) {
+            button.closest('.flex').remove();
+        }
+        function clearAllHistory() {
+            document.getElementById('searchHistory').innerHTML = '<p class="text-sm text-gray-500 text-center py-4">Aucun historique</p>';
+        }
+    </script>
+    <script id="searchScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const searchInput = document.getElementById('searchInput');
+            const searchSuggestions = document.getElementById('searchSuggestions');
+            searchInput.addEventListener('focus', function () {
+                searchSuggestions.classList.remove('hidden');
+            });
+            searchInput.addEventListener('blur', function () {
+                setTimeout(() => {
+                    searchSuggestions.classList.add('hidden');
+                }, 200);
+            });
+            searchInput.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    const query = searchInput.value.trim();
+                    if (query) {
+                        performSearch(query);
+                    }
+                }
+            });
+        });
+        function performSearch(query) {
+            addToHistory(query);
+            generateSearchSummary(query);
+        }
+        function addToHistory(query) {
+            const historyContainer = document.getElementById('searchHistory');
+            const existingItems = historyContainer.querySelectorAll('.flex');
+            if (existingItems[0] && existingItems[0].querySelector('a').textContent === query) {
+                return;
+            }
+            const newItem = document.createElement('div');
+            newItem.className = 'flex items-center justify-between p-3 bg-gray-50 rounded-lg';
+            newItem.innerHTML = `
+<div class="flex-1">
+<a href="#" class="text-sm text-gray-700 hover:text-primary truncate block" onclick="searchFromHistory('${query}')">${query}</a>
+<span class="text-xs text-gray-500">À l'instant</span>
+</div>
+<button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-close-line text-xs"></i>
+</div>
+</button>
+`;
+            historyContainer.insertBefore(newItem, historyContainer.firstChild);
+            if (historyContainer.children.length > 10) {
+                historyContainer.removeChild(historyContainer.lastChild);
+            }
+        }
+        function generateSearchSummary(query) {
+            const chatMessages = document.getElementById('chatMessages');
+            const summaryMessage = document.createElement('div');
+            summaryMessage.className = 'flex items-start space-x-2 mb-4';
+            summaryMessage.innerHTML = `
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-robot-line text-white text-sm"></i>
+</div>
+</div>
+<div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+<p class="text-sm text-gray-700"><strong>Résumé de recherche :</strong> J'ai trouvé 1,247 documents relatifs à "${query}". Les résultats incluent principalement des décrets récents, projets de loi et arrêtés ministériels. Souhaitez-vous que je vous aide à filtrer ces résultats ?</p>
+</div>
+`;
+            chatMessages.appendChild(summaryMessage);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+    </script>
+   
+</body>
+
+</html>

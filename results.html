@@ -794,7 +794,7 @@
     </div>
 
     <!-- Chatbot -->
-    <div class="fixed bottom-6 right-6 w-96 h-96 bg-white rounded-lg shadow-lg border border-gray-200 z-50"
+    <div class="fixed bottom-6 right-6 w-96 h-96 bg-white rounded-lg shadow-lg border border-gray-200 z-50 flex flex-col"
         id="chatWindow">
         <div
             class="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-[#00a650] to-[#00a650] text-white rounded-t-lg">
@@ -805,7 +805,7 @@
                 </div>
             </button>
         </div>
-        <div class="flex-1 p-4 overflow-y-auto h-64" id="chatMessages">
+        <div class="flex-1 min-h-0 p-4 overflow-y-auto" id="chatMessages">
             <div class="flex items-start space-x-2 mb-4">
                 <div
                     class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
@@ -832,6 +832,7 @@
                     </div>
                 </button>
             </div>
+            
         </div>
     </div>
 

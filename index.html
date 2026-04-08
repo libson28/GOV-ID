@@ -14,6 +14,7 @@
         :where([class^="ri-"])::before {
             content: "\f3c2";
         }
+
     </style>
     <script>
         tailwind.config = {
@@ -44,21 +45,18 @@
 
 <body class="bg-gray-50 min-h-screen">
     <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" id="sidebarOverlay"></div>
+
     
     <header class="bg-white shadow-sm border-b border-gray-200 top-0 sticky z-50">
-        <div class="px-6 py-4">
+        <div class="px-6 py-2">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                 <div class="flex items-center space-x-3 w-full sm:w-auto">
                     <div class="flex items-center space-x-2">
-                        <div
-                            class="w-10 h-10 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-lg">G</span>
-                        </div>
-                        <h1 class="text-2xl font-['Pacifico'] text-gray-800">GOV ID</h1>
+                        <img src="logo.png" alt="Logo GOV ID"
+                            class="w-36 rounded-lg object-contain" />
+                       
                     </div>
-                    <div class="hidden lg:block text-sm text-gray-600 ml-6">
-                        Bibliothèque Numérique du Gouvernement du Sénégal
-                    </div>
+                   
                 </div>
                 <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
                     <button
@@ -473,9 +471,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div class="col-span-1 md:col-span-2">
                         <div class="flex items-center space-x-3 mb-4">
-                            <div class="w-10 h-10 bg-gradient-to-r from-primary via-secondary to-accent rounded-lg flex items-center justify-center">
-                                <span class="text-white font-bold text-lg">G</span>
-                            </div>
+                            <img src="logo.png" alt="Logo GOV ID"
+                                class="w-10 h-10 rounded-lg object-contain" />
                             <h3 class="text-2xl font-['Pacifico']">GOV ID</h3>
                         </div>
                         <p class="text-gray-300 mb-4">Bibliothèque numérique officielle du Gouvernement de la République du Sénégal. Accédez facilement aux documents officiels, décrets, projets de loi et archives gouvernementales.</p>
@@ -618,7 +615,6 @@
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
     </script>
-   
 </body>
 
 </html>

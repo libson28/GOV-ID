@@ -41,7 +41,14 @@
         }
     </script>
 </head>
+    <style>
+        @media screen and (max-width:1024px) {
+            .myHero{
+                padding-left: 10px;
+            }
 
+        }
+    </style>
 <body class="bg-gray-50 min-h-screen">
     <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" id="sidebarOverlay"></div>
 
@@ -87,9 +94,9 @@
                 style="background-image: url('');">
                 <div class="absolute inset-0 bg-white/80"></div>
                 <div class="relative z-10">
-                    <section class="bg-gradient-to-r from-gray-50 to-primary/10 min-h-screen flex items-center justify-center hero-section">
-                        <div class="max-w-7xl mx-auto px-2 py-16 w-full">
-                            <div class="grid lg:grid-cols-2 gap-12 items-center mt-[-50px]">
+                    <section class="container-hero bg-gradient-to-r from-gray-50 to-primary/10 lg:h-auto flex items-start justify-center hero-section py-10 lg:pt-10 lg:pb-2">
+                        <div class="max-w-7xl mx-auto px-2 py-10 lg:py-6 w-full">
+                            <div class="grid lg:grid-cols-2 gap-12 items-center  myHero lg:gap-6">
 
                                 <!-- LEFT CONTENT -->
                                 <div>
@@ -118,16 +125,17 @@
                                             Découvrir →
                                         </a>
                                     </div>
+                                   
                                 </div>
 
-                                <!-- Image à droite -->
+                                <!-- Image-à-droite -->
                                 <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
 
                                             <img src="hero.png"
                                                 class="rounded-2xl shadow-lg object-cover w-full hidden lg:block" />
 
                                 </div>
-
+                              
                             </div>
                         </div>
 

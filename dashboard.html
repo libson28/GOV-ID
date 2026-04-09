@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOV ID - Bibliothèque Numérique du Gouvernement du Sénégal</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+    <style>
+        :where([class^="ri-"])::before {
+            content: "\f3c2";
+        }
+
+        .dark-mode {
+            background-color: #0b0b0b;
+            color: #e2e8f0;
+        }
+
+        .dark-mode .bg-white {
+            background-color: #111827 !important;
+        }
+
+        .dark-mode .bg-gray-50 {
+            background-color: #0b0b0b !important;
+        }
+
+        .dark-mode .bg-gray-100 {
+            background-color: #0f172a !important;
+        }
+
+        .dark-mode .text-gray-900 {
+            color: #f8fafc !important;
+        }
+
+        .dark-mode .text-gray-700,
+        .dark-mode .text-gray-600,
+        .dark-mode .text-gray-500 {
+            color: #cbd5e1 !important;
+        }
+
+        .dark-mode .border-gray-200,
+        .dark-mode .border-gray-100 {
+            border-color: #1f2937 !important;
+        }
+
+        .dark-mode .hover\:bg-gray-50:hover {
+            background-color: #111827 !important;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00A651',
+                        secondary: '#FFCD00',
+                        accent: '#E31E24'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-gray-50 min-h-screen">
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden" id="sidebarOverlay"></div>
+    <div class="flex min-h-screen">
+        <aside
+            class="fixed left-0 top-0 h-full w-80 bg-white shadow-lg z-50 transform -translate-x-full transition-transform duration-300 md:translate-x-0 md:fixed md:w-64 md:shadow-none"
+            id="sidebar">
+            <div class="flex flex-col h-full">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-2">
+                            <img src="logo.png" alt="Logo GOV ID" id="sidebarLogo"
+                                class="w-50 rounded-lg object-contain" />
+                        </div>
+                        <button class="md:hidden p-2 text-gray-500 hover:text-primary"
+                            onclick="document.getElementById('sidebar').classList.add('-translate-x-full'); document.getElementById('sidebarOverlay').classList.add('hidden');">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-close-line"></i>
+                            </div>
+                        </button>
+                    </div>
+                    <nav class="space-y-2">
+                        <a href="#" id="sidebarOverview"
+                            class="flex items-center px-3 py-2 text-sm text-white bg-primary rounded-lg"
+                            onclick="showSection('overview')">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-dashboard-line"></i>
+                            </div>
+                            Tableau de bord
+                        </a>
+                        <a href="#" id="sidebarDocuments"
+                            class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors"
+                            onclick="showSection('documents', 'sidebar')">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-file-text-line"></i>
+                            </div>
+                            Documents
+                        </a>
+                        <a href="#" id="sidebarMessages"
+                            class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors"
+                            onclick="showSection('messages', 'sidebar')">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-message-3-line"></i>
+                            </div>
+                            Messages
+                            <span class="ml-auto bg-accent text-white text-xs px-2 py-1 rounded-full">27</span>
+                        </a>
+                        <div class="border-t border-gray-200 my-4"></div>
+                        <a href="#" id="sidebarArchives"
+                            class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors"
+                            onclick="showSection('archives')">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-search-line"></i>
+                            </div>
+                            Archives
+                        </a>
+                        <a href="#" id="sidebarSettings"
+                            class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors"
+                            onclick="showSection('settings')">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-settings-line"></i>
+                            </div>
+                            Paramètres
+                        </a>
+                        <a href="login.html"
+                            class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+                            <div class="w-5 h-5 flex items-center justify-center mr-3">
+                                <i class="ri-logout-box-line"></i>
+                            </div>
+                            Se déconnecter
+                        </a>
+                    </nav>
+                </div>
+                <div class="p-6 pb-24">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-semibold text-gray-900">Raccourcis</h3>
+                    </div>
+                    <div class="space-y-2 max-h-64 overflow-y-auto pr-1">
+                        <button
+                            class="w-full text-left flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                            onclick="quickAction('constitution')">
+                            <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center mr-3">
+                                <div class="w-4 h-4 flex items-center justify-center text-red-600">
+                                    <i class="ri-file-pdf-line text-sm"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-900">Constitution</p>
+                                <p class="text-xs text-gray-500">Accès rapide</p>
+                            </div>
+                        </button>
+                        <button
+                            class="w-full text-left flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                            onclick="quickAction('decrets')">
+                            <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
+                                <div class="w-4 h-4 flex items-center justify-center text-blue-600">
+                                    <i class="ri-file-list-line text-sm"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-900">Décrets récents</p>
+                                <p class="text-xs text-gray-500">34 nouveaux</p>
+                            </div>
+                        </button>
+                        <button
+                            class="w-full text-left flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                            onclick="quickAction('statistics')">
+                            <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                                <div class="w-4 h-4 flex items-center justify-center text-green-600">
+                                    <i class="ri-bar-chart-line text-sm"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-gray-900">Statistiques</p>
+                                <p class="text-xs text-gray-500">Voir les rapports</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center font-semibold">
+                            AD
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-sm font-semibold text-gray-900">Admin</div>
+                            <div class="text-xs text-gray-500">Administrateur</div>
+                        </div>
+                        <button class="text-gray-400 hover:text-primary" title="Profil">
+                            <i class="ri-user-3-line"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="flex-1 md:ml-64">
+            <div class="min-h-screen bg-gray-50 p-6">
+                <div class="max-w-7xl mx-auto">
+                    <button id="themeToggleMain"
+                        class="fixed top-6 right-6 z-50 p-2 bg-white border border-gray-200 rounded-lg text-gray-600 hover:text-primary hover:border-primary transition-colors theme-toggle"
+                        title="Mode sombre/clair">
+                        <div class="w-5 h-5 flex items-center justify-center">
+                            <i class="ri-moon-line theme-icon"></i>
+                        </div>
+                    </button>
+                    <div class="mb-8" id="dashboardHeader">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h1 class="text-2xl font-bold text-gray-900">Tableau de Bord</h1>
+                                <p class="text-gray-600">Gestion des documents gouvernementaux</p>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <button
+                                    class="bg-primary hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors !rounded-button whitespace-nowrap"
+                                    onclick="showAddDocument()">
+                                    <div class="flex items-center space-x-2">
+                                        <div class="w-4 h-4 flex items-center justify-center">
+                                            <i class="ri-add-line"></i>
+                                        </div>
+                                        <span>Nouveau document</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8" id="statsCards">
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600">Total Documents</p>
+                                    <p class="text-2xl font-bold text-gray-900">1,247</p>
+                                    <div class="flex items-center mt-2">
+                                        <div class="w-3 h-3 flex items-center justify-center text-primary mr-2">
+                                            <i class="ri-arrow-up-line text-xs"></i>
+                                        </div>
+                                        <span class="text-sm text-primary">+12% ce mois</span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <div class="w-6 h-6 flex items-center justify-center text-primary">
+                                        <i class="ri-file-text-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600">En Attente</p>
+                                    <p class="text-2xl font-bold text-gray-900">34</p>
+                                    <div class="flex items-center mt-2">
+                                        <div class="w-3 h-3 flex items-center justify-center text-secondary mr-2">
+                                            <i class="ri-time-line text-xs"></i>
+                                        </div>
+                                        <span class="text-sm text-gray-600">À traiter</span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
+                                    <div class="w-6 h-6 flex items-center justify-center text-secondary">
+                                        <i class="ri-clock-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600">Publiés</p>
+                                    <p class="text-2xl font-bold text-gray-900">1,186</p>
+                                    <div class="flex items-center mt-2">
+                                        <div class="w-3 h-3 flex items-center justify-center text-primary mr-2">
+                                            <i class="ri-check-line text-xs"></i>
+                                        </div>
+                                        <span class="text-sm text-gray-600">Validés</span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                                    <div class="w-6 h-6 flex items-center justify-center text-primary">
+                                        <i class="ri-check-double-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-medium text-gray-600">Messages</p>
+                                    <p class="text-2xl font-bold text-gray-900">27</p>
+                                    <div class="flex items-center mt-2">
+                                        <div class="w-3 h-3 flex items-center justify-center text-accent mr-2">
+                                            <i class="ri-mail-unread-line text-xs"></i>
+                                        </div>
+                                        <span class="text-sm text-accent">Non lus</span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                                    <div class="w-6 h-6 flex items-center justify-center text-accent">
+                                        <i class="ri-message-3-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 mb-8" id="dashboardContent">
+                        <div class="p-6 border-b border-gray-100">
+                            <div
+                                class="flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0">
+                                <div class="text-sm font-semibold text-gray-900" id="overviewTabs">
+                                    Vue d'ensemble
+                                </div>
+                                <div class="flex items-center space-x-3" id="sectionActions">
+                                    <div class="relative">
+                                        <input type="text" placeholder="Rechercher..."
+                                            class="pl-10 pr-4 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary w-64"
+                                            id="searchInput">
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                                <i class="ri-search-line"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6" id="overviewSection">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                                <div class="bg-gray-50 rounded-lg p-6">
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Activités Récentes</h3>
+                                    <div class="space-y-4">
+                                        <div class="flex items-start space-x-3">
+                                            <div
+                                                class="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                                                <div class="w-4 h-4 flex items-center justify-center text-white">
+                                                    <i class="ri-file-add-line text-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium text-gray-900">Nouveau décret ajouté</p>
+                                                <p class="text-sm text-gray-600">Décret n°2024-156 sur la fonction
+                                                    publique</p>
+                                                <p class="text-xs text-gray-500">Il y a 2 heures</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start space-x-3">
+                                            <div
+                                                class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center flex-shrink-0">
+                                                <div class="w-4 h-4 flex items-center justify-center text-white">
+                                                    <i class="ri-edit-line text-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium text-gray-900">Document modifié</p>
+                                                <p class="text-sm text-gray-600">Arrêté ministériel n°2024-089</p>
+                                                <p class="text-xs text-gray-500">Il y a 4 heures</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start space-x-3">
+                                            <div
+                                                class="w-8 h-8 bg-accent rounded-full flex items-center justify-center flex-shrink-0">
+                                                <div class="w-4 h-4 flex items-center justify-center text-white">
+                                                    <i class="ri-message-line text-sm"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-1">
+                                                <p class="text-sm font-medium text-gray-900">Nouveau message</p>
+                                                <p class="text-sm text-gray-600">Demande d'accès aux archives</p>
+                                                <p class="text-xs text-gray-500">Il y a 6 heures</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bg-gray-50 rounded-lg p-6">
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-4">Documents Populaires</h3>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                            <div class="flex items-center space-x-3">
+                                                <div
+                                                    class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                                                    <div class="w-4 h-4 flex items-center justify-center text-red-600">
+                                                        <i class="ri-file-pdf-line text-sm"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">Constitution du Sénégal
+                                                    </p>
+                                                    <p class="text-xs text-gray-500">847 vues cette semaine</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                            <div class="flex items-center space-x-3">
+                                                <div
+                                                    class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                                    <div class="w-4 h-4 flex items-center justify-center text-blue-600">
+                                                        <i class="ri-file-text-line text-sm"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">Code du Travail 2024
+                                                    </p>
+                                                    <p class="text-xs text-gray-500">623 vues cette semaine</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-white rounded-lg">
+                                            <div class="flex items-center space-x-3">
+                                                <div
+                                                    class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                                                    <div
+                                                        class="w-4 h-4 flex items-center justify-center text-green-600">
+                                                        <i class="ri-file-list-line text-sm"></i>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <p class="text-sm font-medium text-gray-900">Loi de Finances 2024
+                                                    </p>
+                                            <p class="text-xs text-gray-500">498 vues cette semaine</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 hidden" id="documentsSection" style="padding: 10px;">
+                            <!--  -->
+                            <div class="flex items-center justify-between pb-6">
+                                <div>
+                                    <h1 class="text-2xl font-bold text-gray-900">Mes documents</h1>
+                                    <p class="text-gray-600">Liste des documents ajoutés</p>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <button
+                                        class="bg-primary hover:bg-green-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors !rounded-button whitespace-nowrap"
+                                        onclick="showAddDocument()">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-4 h-4 flex items-center justify-center">
+                                                <i class="ri-add-line"></i>
+                                            </div>
+                                            <span>Nouveau document</span>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <!--  -->
+
+                            <div
+                                class="flex flex-col md:flex-row md:items-center justify-between space-y-4 md:space-y-0 mb-6">
+                                <div class="flex items-center space-x-4">
+                                    <div class="relative">
+                                        <select
+                                            class="pl-10 pr-8 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary appearance-none bg-white"
+                                            id="categoryFilter">
+                                            <option value="">Toutes les catégories</option>
+                                            <option value="decret">Décrets</option>
+                                            <option value="loi">Lois</option>
+                                            <option value="arrete">Arrêtés</option>
+                                            <option value="circulaire">Circulaires</option>
+                                        </select>
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                                <i class="ri-filter-line"></i>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                            <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                                <i class="ri-arrow-down-s-line"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="relative">
+                                        <select
+                                            class="pl-10 pr-8 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:border-primary appearance-none bg-white"
+                                            id="statusFilter">
+                                            <option value="">Tous les statuts</option>
+                                            <option value="published">Publié</option>
+                                            <option value="draft">Brouillon</option>
+                                            <option value="pending">En attente</option>
+                                            <option value="archived">Archivé</option>
+                                        </select>
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                                <i class="ri-bookmark-line"></i>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                            <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                                <i class="ri-arrow-down-s-line"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="overflow-x-auto">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr class="border-b border-gray-200">
+                                            <th class="text-left py-3 px-4 font-semibold text-sm text-gray-700">Document
+                                            </th>
+                                            <th class="text-left py-3 px-4 font-semibold text-sm text-gray-700">Type
+                                            </th>
+                                            <th class="text-left py-3 px-4 font-semibold text-sm text-gray-700">Date
+                                            </th>
+                                            <th class="text-left py-3 px-4 font-semibold text-sm text-gray-700">Statut
+                                            </th>
+                                            <th class="text-left py-3 px-4 font-semibold text-sm text-gray-700">Actions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="documentsTableBody">
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <div
+                                                        class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                                                        <div
+                                                            class="w-4 h-4 flex items-center justify-center text-red-600">
+                                                            <i class="ri-file-pdf-line text-sm"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-medium text-gray-900">Décret n°2024-156</p>
+                                                        <p class="text-sm text-gray-600">Réforme de la fonction publique
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    Décret
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span class="text-sm text-gray-600">15 Mars 2024</span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Publié
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-2">
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-primary hover:bg-primary/10 rounded"
+                                                        title="Voir">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-eye-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-secondary hover:bg-secondary/10 rounded"
+                                                        title="Modifier">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-edit-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-accent hover:bg-accent/10 rounded"
+                                                        title="Supprimer">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-delete-bin-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <div
+                                                        class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                                                        <div
+                                                            class="w-4 h-4 flex items-center justify-center text-purple-600">
+                                                            <i class="ri-file-text-line text-sm"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-medium text-gray-900">Loi n°2024-012</p>
+                                                        <p class="text-sm text-gray-600">Code de l'environnement</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                                    Loi
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span class="text-sm text-gray-600">12 Mars 2024</span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                                    En attente
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-2">
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-primary hover:bg-primary/10 rounded"
+                                                        title="Voir">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-eye-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-secondary hover:bg-secondary/10 rounded"
+                                                        title="Modifier">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-edit-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-accent hover:bg-accent/10 rounded"
+                                                        title="Supprimer">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-delete-bin-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                         <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <div
+                                                        class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                                                        <div
+                                                            class="w-4 h-4 flex items-center justify-center text-red-600">
+                                                            <i class="ri-file-pdf-line text-sm"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-medium text-gray-900">Décret n°2024-156</p>
+                                                        <p class="text-sm text-gray-600">Réforme de la fonction publique
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    Décret
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span class="text-sm text-gray-600">15 Mars 2024</span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Publié
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-2">
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-primary hover:bg-primary/10 rounded"
+                                                        title="Voir">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-eye-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-secondary hover:bg-secondary/10 rounded"
+                                                        title="Modifier">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-edit-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-accent hover:bg-accent/10 rounded"
+                                                        title="Supprimer">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-delete-bin-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <div
+                                                        class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                                                        <div
+                                                            class="w-4 h-4 flex items-center justify-center text-orange-600">
+                                                            <i class="ri-file-list-line text-sm"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-medium text-gray-900">Arrêté n°2024-089</p>
+                                                        <p class="text-sm text-gray-600">Procédures administratives</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">
+                                                    Arrêté
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span class="text-sm text-gray-600">08 Mars 2024</span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Publié
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-2">
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-primary hover:bg-primary/10 rounded"
+                                                        title="Voir">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-eye-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-secondary hover:bg-secondary/10 rounded"
+                                                        title="Modifier">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-edit-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-accent hover:bg-accent/10 rounded"
+                                                        title="Supprimer">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-delete-bin-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                         <tr class="border-b border-gray-100 hover:bg-gray-50">
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-3">
+                                                    <div
+                                                        class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center">
+                                                        <div
+                                                            class="w-4 h-4 flex items-center justify-center text-red-600">
+                                                            <i class="ri-file-pdf-line text-sm"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <p class="font-medium text-gray-900">Décret n°2024-156</p>
+                                                        <p class="text-sm text-gray-600">Réforme de la fonction publique
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    Décret
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span class="text-sm text-gray-600">15 Mars 2024</span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <span
+                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                    Publié
+                                                </span>
+                                            </td>
+                                            <td class="py-4 px-4">
+                                                <div class="flex items-center space-x-2">
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-primary hover:bg-primary/10 rounded"
+                                                        title="Voir">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-eye-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-secondary hover:bg-secondary/10 rounded"
+                                                        title="Modifier">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-edit-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                    <button
+                                                        class="p-1.5 text-gray-400 hover:text-accent hover:bg-accent/10 rounded"
+                                                        title="Supprimer">
+                                                        <div class="w-4 h-4 flex items-center justify-center">
+                                                            <i class="ri-delete-bin-line text-sm"></i>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="mt-6 flex items-center justify-between">
+                                <div class="text-sm text-gray-600">
+                                    Affichage de 1 à 10 sur 1,247 documents
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50 disabled:opacity-50 !rounded-button whitespace-nowrap"
+                                        disabled>
+                                        Précédent
+                                    </button>
+                                    <button
+                                        class="px-3 py-2 bg-primary text-white rounded-lg text-sm hover:bg-green-600 !rounded-button whitespace-nowrap">
+                                        1
+                                    </button>
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50 !rounded-button whitespace-nowrap">
+                                        2
+                                    </button>
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50 !rounded-button whitespace-nowrap">
+                                        3
+                                    </button>
+                                    <button
+                                        class="px-3 py-2 border border-gray-300 rounded-lg text-sm hover:bg-gray-50 !rounded-button whitespace-nowrap">
+                                        Suivant
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 hidden" id="messagesSection">
+                            <div class="pb-6">
+                                <h1 class="text-2xl font-bold text-gray-900">Messages</h1>
+                                <p class="text-gray-600">Liste des messages reçus</p>
+                            </div>
+                            <div class="space-y-4">
+                                <div
+                                    class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div class="flex items-start space-x-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                                                <span class="text-white font-medium text-sm">AI</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-900">Aminata Diarra</h3>
+                                                <p class="text-sm text-gray-600">aminata.diarra@univ-dakar.sn</p>
+                                                <p class="text-xs text-gray-500">Reçu il y a 2 heures</p>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                            Nouveau
+                                        </span>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h4 class="font-medium text-gray-900 mb-2">Demande d'accès aux archives
+                                            historiques</h4>
+                                        <p class="text-gray-700 text-sm leading-relaxed">
+                                            Bonjour, je suis doctorante en histoire à l'Université de Dakar et je
+                                            souhaiterais accéder aux archives coloniales de la période 1920-1960 pour ma
+                                            recherche sur l'administration coloniale au Sénégal. Pourriez-vous
+                                            m'indiquer la procédure à suivre ?
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                                <i class="ri-attachment-line text-sm"></i>
+                                            </div>
+                                            <span class="text-xs text-gray-500">3 pièces jointes</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <button
+                                                class="px-3 py-1.5 text-sm text-primary hover:bg-primary/10 rounded-lg transition-colors !rounded-button whitespace-nowrap">
+                                                Répondre
+                                            </button>
+                                            <button
+                                                class="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors !rounded-button whitespace-nowrap">
+                                                Archiver
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div class="flex items-start space-x-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center">
+                                                <span class="text-white font-medium text-sm">MS</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-900">Moussa Sy</h3>
+                                                <p class="text-sm text-gray-600">moussa.sy@journaliste.sn</p>
+                                                <p class="text-xs text-gray-500">Reçu il y a 5 heures</p>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            Lu
+                                        </span>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h4 class="font-medium text-gray-900 mb-2">Demande d'information sur les décrets
+                                            récents</h4>
+                                        <p class="text-gray-700 text-sm leading-relaxed">
+                                            En tant que journaliste, je souhaiterais obtenir des informations sur les
+                                            derniers décrets publiés concernant la réforme de l'administration publique.
+                                            Ces documents sont-ils accessibles au public ?
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                                <i class="ri-attachment-line text-sm"></i>
+                                            </div>
+                                            <span class="text-xs text-gray-500">1 pièce jointe</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <button
+                                                class="px-3 py-1.5 text-sm text-primary hover:bg-primary/10 rounded-lg transition-colors !rounded-button whitespace-nowrap">
+                                                Répondre
+                                            </button>
+                                            <button
+                                                class="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors !rounded-button whitespace-nowrap">
+                                                Archiver
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="bg-white border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div class="flex items-start space-x-4">
+                                            <div
+                                                class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">
+                                                <span class="text-white font-medium text-sm">FF</span>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold text-gray-900">Fatou Fall</h3>
+                                                <p class="text-sm text-gray-600">fatou.fall@avocat.sn</p>
+                                                <p class="text-xs text-gray-500">Reçu hier</p>
+                                            </div>
+                                        </div>
+                                        <span
+                                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                            Urgent
+                                        </span>
+                                    </div>
+                                    <div class="mb-4">
+                                        <h4 class="font-medium text-gray-900 mb-2">Consultation juridique - Droit
+                                            administratif</h4>
+                                        <p class="text-gray-700 text-sm leading-relaxed">
+                                            Je représente un client dans une affaire de droit administratif et j'aurais
+                                            besoin de consulter la jurisprudence et les textes réglementaires récents.
+                                            Pourriez-vous m'orienter vers les bonnes ressources ?
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center space-x-2">
+                                            <div class="w-4 h-4 flex items-center justify-center text-gray-400">
+                                                <i class="ri-attachment-line text-sm"></i>
+                                            </div>
+                                            <span class="text-xs text-gray-500">Aucune pièce jointe</span>
+                                        </div>
+                                        <div class="flex items-center space-x-2">
+                                            <button
+                                                class="px-3 py-1.5 text-sm text-primary hover:bg-primary/10 rounded-lg transition-colors !rounded-button whitespace-nowrap">
+                                                Répondre
+                                            </button>
+                                            <button
+                                                class="px-3 py-1.5 text-sm text-gray-600 hover:bg-gray-100 rounded-lg transition-colors !rounded-button whitespace-nowrap">
+                                                Archiver
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex items-center justify-center">
+                                <button
+                                    class="px-4 py-2 bg-primary hover:bg-green-600 text-white rounded-lg text-sm font-medium transition-colors !rounded-button whitespace-nowrap">
+                                    Charger plus de messages
+                                </button>
+                            </div>
+                        </div>
+                        <div class="p-6 hidden" id="archivesSection">
+                           <div class="pb-6">
+                                <h1 class="text-2xl font-bold text-gray-900">Messages Archivés</h1>
+                                <p class="text-gray-600">Liste des messages archivés</p>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium text-gray-900">Message archivé : Accès archives 1920
+                                            </h4>
+                                            <p class="text-sm text-gray-600">Demande d'accès archivée le 12/03/2024.</p>
+                                        </div>
+                                        <button
+                                            class="px-3 py-2 text-sm bg-primary/10 text-primary rounded-lg !rounded-button"
+                                            onclick="unarchiveMessage(this)">
+                                            Désarchiver
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium text-gray-900">Message archivé : Procédure décret
+                                            </h4>
+                                            <p class="text-sm text-gray-600">Archivé le 08/03/2024.</p>
+                                        </div>
+                                        <button
+                                            class="px-3 py-2 text-sm bg-primary/10 text-primary rounded-lg !rounded-button"
+                                            onclick="unarchiveMessage(this)">
+                                            Désarchiver
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium text-gray-900">Message archivé : Budget 2025</h4>
+                                            <p class="text-sm text-gray-600">Archivé le 02/03/2024.</p>
+                                        </div>
+                                        <button
+                                            class="px-3 py-2 text-sm bg-primary/10 text-primary rounded-lg !rounded-button"
+                                            onclick="unarchiveMessage(this)">
+                                            Désarchiver
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium text-gray-900">Message archivé : Réforme santé</h4>
+                                            <p class="text-sm text-gray-600">Archivé le 25/02/2024.</p>
+                                        </div>
+                                        <button
+                                            class="px-3 py-2 text-sm bg-primary/10 text-primary rounded-lg !rounded-button"
+                                            onclick="unarchiveMessage(this)">
+                                            Désarchiver
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 rounded-lg p-6">
+                                    <div class="flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-medium text-gray-900">Message archivé : Archives coloniales</h4>
+                                            <p class="text-sm text-gray-600">Archivé le 18/02/2024.</p>
+                                        </div>
+                                        <button
+                                            class="px-3 py-2 text-sm bg-primary/10 text-primary rounded-lg !rounded-button"
+                                            onclick="unarchiveMessage(this)">
+                                            Désarchiver
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 hidden" id="settingsSection">
+                            <div class="flex items-center justify-between mb-6">
+                                <h1 class="text-2xl font-bold text-gray-900">Paramètres</h1>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Notifications</div>
+                                        <div class="text-xs text-gray-500">Recevoir les alertes par email</div>
+                                    </div>
+                                    <button id="settingsNotif"
+                                        class="px-3 py-2 bg-primary/10 text-primary rounded-lg text-xs !rounded-button">
+                                        Activées
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Langue</div>
+                                        <div class="text-xs text-gray-500" id="settingsLanguage">Français</div>
+                                    </div>
+                                    <button id="settingsLanguageBtn"
+                                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button">
+                                        Modifier
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Sécurité</div>
+                                        <div class="text-xs text-gray-500">Gestion des accès</div>
+                                    </div>
+                                    <button
+                                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button">
+                                        Ouvrir
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Taille du texte</div>
+                                        <div class="text-xs text-gray-500">Petite, normale, grande</div>
+                                    </div>
+                                    <button
+                                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button">
+                                        Modifier
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Résultats par page</div>
+                                        <div class="text-xs text-gray-500">10 / 20 / 50</div>
+                                    </div>
+                                    <button
+                                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button">
+                                        Choisir
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Historique de recherche</div>
+                                        <div class="text-xs text-gray-500">Sauvegarde automatique</div>
+                                    </div>
+                                    <button
+                                        class="px-3 py-2 bg-primary/10 text-primary rounded-lg text-xs !rounded-button">
+                                        Activé
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Format d'export</div>
+                                        <div class="text-xs text-gray-500">PDF par défaut</div>
+                                    </div>
+                                    <button
+                                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button">
+                                        Modifier
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Mode compact</div>
+                                        <div class="text-xs text-gray-500">Réduire l'espacement des listes</div>
+                                    </div>
+                                    <button
+                                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button">
+                                        Désactivé
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Téléchargements auto</div>
+                                        <div class="text-xs text-gray-500">Ouvrir automatiquement les PDF</div>
+                                    </div>
+                                    <button
+                                        class="px-3 py-2 bg-primary/10 text-primary rounded-lg text-xs !rounded-button">
+                                        Activé
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Sauvegarde locale</div>
+                                        <div class="text-xs text-gray-500">Conserver les brouillons</div>
+                                    </div>
+                                    <button
+                                        class="px-3 py-2 bg-primary/10 text-primary rounded-lg text-xs !rounded-button">
+                                        Activé
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6 hidden" id="addDocumentSection">
+                            <div class="flex items-center justify-between mb-6">
+                                <h2 class="text-xl font-bold text-gray-900">Ajouter un nouveau document</h2>
+                            </div>
+                            <form class="space-y-6" id="addDocumentForm">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Titre du
+                                            document</label>
+                                        <input type="text" name="title"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm"
+                                            placeholder="Ex: Décret n°2024-157" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Type de
+                                            document</label>
+                                        <select name="type"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm appearance-none bg-white"
+                                            required>
+                                            <option value="">Sélectionner le type</option>
+                                            <option value="decret">Décret</option>
+                                            <option value="loi">Loi</option>
+                                            <option value="arrete">Arrêté</option>
+                                            <option value="circulaire">Circulaire</option>
+                                            <option value="constitution">Constitution</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-800 mb-2">Description</label>
+                                    <textarea name="description" rows="4" maxlength="500"
+                                        class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm resize-none"
+                                        placeholder="Décrivez brièvement le contenu du document..."></textarea>
+                                    <div class="text-xs text-gray-500 mt-1">Maximum 500 caractères</div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Date de
+                                            publication</label>
+                                        <input type="date" name="publishDate"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm"
+                                            required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Ministère
+                                            émetteur</label>
+                                        <select name="ministry"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm appearance-none bg-white"
+                                            required>
+                                            <option value="">Sélectionner le ministère</option>
+                                            <option value="presidence">Présidence de la République</option>
+                                            <option value="primature">Primature</option>
+                                            <option value="justice">Ministère de la Justice</option>
+                                            <option value="interieur">Ministère de l'Intérieur</option>
+                                            <option value="finances">Ministère des Finances</option>
+                                            <option value="education">Ministère de l'Éducation</option>
+                                            <option value="sante">Ministère de la Santé</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-800 mb-2">Fichier du
+                                        document</label>
+                                    <input type="file"
+                                        class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm">
+                                </div>
+                                <div class="flex items-center justify-end gap-3">
+                                    <button type="button"
+                                        class="px-4 py-2 border border-gray-200 text-gray-700 rounded-lg !rounded-button"
+                                        onclick="showSection('documents')">
+                                        Annuler
+                                    </button>
+                                    <button type="submit"
+                                        class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors !rounded-button">
+                                        Enregistrer
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="hidden bg-white rounded-xl shadow-sm border border-gray-100 mb-8 p-6 overflow-x-auto"
+                        id="documentsStandalone"></div>
+                    <div class="hidden bg-white rounded-xl shadow-sm border border-gray-100 mb-8 p-6 overflow-x-auto"
+                        id="messagesStandalone"></div>
+                </div>
+
+                <div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="addDocumentModal">
+                    <div class="flex items-center justify-center min-h-screen p-4">
+                        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                            <div class="p-6 border-b border-gray-200">
+                                <div class="flex items-center justify-between">
+                                    <h2 class="text-xl font-bold text-gray-900">Ajouter un nouveau document</h2>
+                                    <button class="text-gray-400 hover:text-gray-600" onclick="hideAddDocument()">
+                                        <div class="w-6 h-6 flex items-center justify-center">
+                                            <i class="ri-close-line text-xl"></i>
+                                        </div>
+                                    </button>
+                                </div>
+                            </div>
+                            <form class="p-6 space-y-6" id="addDocumentForm">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Titre du
+                                            document</label>
+                                        <input type="text" name="title"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm"
+                                            placeholder="Ex: Décret n°2024-157" required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Type de
+                                            document</label>
+                                        <select name="type"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm appearance-none bg-white"
+                                            required>
+                                            <option value="">Sélectionner le type</option>
+                                            <option value="decret">Décret</option>
+                                            <option value="loi">Loi</option>
+                                            <option value="arrete">Arrêté</option>
+                                            <option value="circulaire">Circulaire</option>
+                                            <option value="constitution">Constitution</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-800 mb-2">Description</label>
+                                    <textarea name="description" rows="4" maxlength="500"
+                                        class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm resize-none"
+                                        placeholder="Décrivez brièvement le contenu du document..."></textarea>
+                                    <div class="text-xs text-gray-500 mt-1">Maximum 500 caractères</div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Date de
+                                            publication</label>
+                                        <input type="date" name="publishDate"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm"
+                                            required>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Ministère
+                                            émetteur</label>
+                                        <select name="ministry"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm appearance-none bg-white"
+                                            required>
+                                            <option value="">Sélectionner le ministère</option>
+                                            <option value="presidence">Présidence de la République</option>
+                                            <option value="primature">Primature</option>
+                                            <option value="justice">Ministère de la Justice</option>
+                                            <option value="interieur">Ministère de l'Intérieur</option>
+                                            <option value="finances">Ministère des Finances</option>
+                                            <option value="education">Ministère de l'Éducation</option>
+                                            <option value="sante">Ministère de la Santé</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-800 mb-2">Fichier du
+                                        document</label>
+                                    <div
+                                        class="border-2 border-dashed border-gray-200 rounded-lg p-6 text-center hover:border-primary transition-colors">
+                                        <div
+                                            class="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                            <div class="w-6 h-6 flex items-center justify-center text-gray-400">
+                                                <i class="ri-upload-cloud-line text-xl"></i>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm font-medium text-gray-900 mb-2">Glissez votre fichier ici ou
+                                            cliquez pour sélectionner</p>
+                                        <p class="text-xs text-gray-500">PDF, DOC, DOCX (Max. 10MB)</p>
+                                        <input type="file" name="document" class="hidden" accept=".pdf,.doc,.docx"
+                                            id="documentFile">
+                                        <button type="button"
+                                            class="mt-3 px-4 py-2 bg-primary hover:bg-green-600 text-white rounded-lg text-sm font-medium transition-colors !rounded-button whitespace-nowrap"
+                                            onclick="document.getElementById('documentFile').click()">
+                                            Choisir un fichier
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Statut</label>
+                                        <select name="status"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm appearance-none bg-white"
+                                            required>
+                                            <option value="draft">Brouillon</option>
+                                            <option value="pending">En attente de validation</option>
+                                            <option value="published">Publier immédiatement</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold text-gray-800 mb-2">Niveau
+                                            d'accès</label>
+                                        <select name="access"
+                                            class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:border-primary text-sm appearance-none bg-white"
+                                            required>
+                                            <option value="public">Public</option>
+                                            <option value="restricted">Accès restreint</option>
+                                            <option value="internal">Usage interne</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-end space-x-4 pt-4">
+                                    <button type="button"
+                                        class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap"
+                                        onclick="hideAddDocument()">
+                                        Annuler
+                                    </button>
+                                    <button type="submit"
+                                        class="px-6 py-3 bg-primary hover:bg-green-600 text-white rounded-lg font-medium transition-colors !rounded-button whitespace-nowrap">
+                                        Ajouter le document
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script id="sidebarScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.getElementById('sidebar');
+            const sidebarOverlay = document.getElementById('sidebarOverlay');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function () {
+                    sidebar.classList.remove('-translate-x-full');
+                    sidebarOverlay.classList.remove('hidden');
+                });
+            }
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', function () {
+                    sidebar.classList.add('-translate-x-full');
+                    sidebarOverlay.classList.add('hidden');
+                });
+            }
+        });
+        function searchFromHistory(query) {
+            document.getElementById('searchInput').value = query;
+            performSearch(query);
+            sidebar.classList.add('-translate-x-full');
+            sidebarOverlay.classList.add('hidden');
+        }
+        function removeFromHistory(button) {
+            button.closest('.flex').remove();
+        }
+        function clearAllHistory() {
+            document.getElementById('searchHistory').innerHTML = '<p class="text-sm text-gray-500 text-center py-4">Aucun historique</p>';
+        }
+    </script>
+    <script id="dashboardScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            showSection('overview');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            const searchInput = document.getElementById('searchInput');
+            if (categoryFilter) {
+                categoryFilter.addEventListener('change', function () {
+                    filterDocuments();
+                });
+            }
+            if (statusFilter) {
+                statusFilter.addEventListener('change', function () {
+                    filterDocuments();
+                });
+            }
+            if (searchInput) {
+                searchInput.addEventListener('input', function () {
+                    filterDocuments();
+                });
+            }
+            const addDocumentForm = document.getElementById('addDocumentForm');
+            if (addDocumentForm) {
+                addDocumentForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    handleAddDocument();
+                });
+            }
+        });
+        function showSection(section, source) {
+            const dashboardContent = document.getElementById('dashboardContent');
+            const overviewSection = document.getElementById('overviewSection');
+            const documentsSection = document.getElementById('documentsSection');
+            const messagesSection = document.getElementById('messagesSection');
+            const documentsStandalone = document.getElementById('documentsStandalone');
+            const messagesStandalone = document.getElementById('messagesStandalone');
+            const archivesSection = document.getElementById('archivesSection');
+            const settingsSection = document.getElementById('settingsSection');
+            const overviewTab = document.getElementById('overviewTab');
+            const documentsTab = document.getElementById('documentsTab');
+            const messagesTab = document.getElementById('messagesTab');
+            const sidebarOverview = document.getElementById('sidebarOverview');
+            const sidebarDocuments = document.getElementById('sidebarDocuments');
+            const sidebarMessages = document.getElementById('sidebarMessages');
+            const sidebarArchives = document.getElementById('sidebarArchives');
+            const sidebarSettings = document.getElementById('sidebarSettings');
+            const sectionActions = document.getElementById('sectionActions');
+            const overviewTabs = document.getElementById('overviewTabs');
+            overviewSection.classList.add('hidden');
+            documentsSection.classList.add('hidden');
+            messagesSection.classList.add('hidden');
+            if (documentsStandalone) documentsStandalone.classList.add('hidden');
+            if (messagesStandalone) messagesStandalone.classList.add('hidden');
+            if (archivesSection) archivesSection.classList.add('hidden');
+            if (settingsSection) settingsSection.classList.add('hidden');
+            if (overviewTab) overviewTab.className = 'px-4 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-all !rounded-button whitespace-nowrap';
+            if (documentsTab) documentsTab.className = 'px-4 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-all !rounded-button whitespace-nowrap';
+            if (messagesTab) messagesTab.className = 'px-4 py-2 text-sm font-medium text-gray-600 hover:text-primary transition-all !rounded-button whitespace-nowrap';
+            if (sidebarOverview) sidebarOverview.className = 'flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors';
+            if (sidebarDocuments) sidebarDocuments.className = 'flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors';
+            if (sidebarMessages) sidebarMessages.className = 'flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors';
+            if (sidebarArchives) sidebarArchives.className = 'flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors';
+            if (sidebarSettings) sidebarSettings.className = 'flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors';
+            if (section === 'overview') {
+                const dashboardHeader = document.getElementById('dashboardHeader');
+                if (dashboardHeader) dashboardHeader.classList.remove('hidden');
+                const statsCards = document.getElementById('statsCards');
+                if (statsCards) statsCards.classList.remove('hidden');
+                if (sectionActions) sectionActions.classList.remove('hidden');
+                if (overviewTabs) overviewTabs.classList.remove('hidden');
+                if (dashboardContent) dashboardContent.classList.remove('hidden');
+                overviewSection.classList.remove('hidden');
+                if (overviewTab) overviewTab.className = 'px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg transition-all !rounded-button whitespace-nowrap';
+                if (sidebarOverview) sidebarOverview.className = 'flex items-center px-3 py-2 text-sm text-white bg-primary rounded-lg';
+            } else if (section === 'documents') {
+                const dashboardHeader = document.getElementById('dashboardHeader');
+                if (dashboardHeader) dashboardHeader.classList.add('hidden');
+                const statsCards = document.getElementById('statsCards');
+                if (statsCards) statsCards.classList.add('hidden');
+                if (sectionActions) sectionActions.classList.remove('hidden');
+                if (overviewTabs) overviewTabs.classList.add('hidden');
+                if (source === 'sidebar' && documentsStandalone) {
+                    if (dashboardContent) dashboardContent.classList.add('hidden');
+                    documentsStandalone.classList.remove('hidden');
+                } else {
+                    if (dashboardContent) dashboardContent.classList.remove('hidden');
+                    documentsSection.classList.remove('hidden');
+                    if (documentsTab) documentsTab.className = 'px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg transition-all !rounded-button whitespace-nowrap';
+                }
+                if (sidebarDocuments) sidebarDocuments.className = 'flex items-center px-3 py-2 text-sm text-white bg-primary rounded-lg';
+            } else if (section === 'messages') {
+                const dashboardHeader = document.getElementById('dashboardHeader');
+                if (dashboardHeader) dashboardHeader.classList.add('hidden');
+                const statsCards = document.getElementById('statsCards');
+                if (statsCards) statsCards.classList.add('hidden');
+                if (sectionActions) sectionActions.classList.remove('hidden');
+                if (overviewTabs) overviewTabs.classList.add('hidden');
+                if (source === 'sidebar' && messagesStandalone) {
+                    if (dashboardContent) dashboardContent.classList.add('hidden');
+                    messagesStandalone.classList.remove('hidden');
+                } else {
+                    if (dashboardContent) dashboardContent.classList.remove('hidden');
+                    messagesSection.classList.remove('hidden');
+                    if (messagesTab) messagesTab.className = 'px-4 py-2 text-sm font-medium text-white bg-primary rounded-lg transition-all !rounded-button whitespace-nowrap';
+                }
+                if (sidebarMessages) sidebarMessages.className = 'flex items-center px-3 py-2 text-sm text-white bg-primary rounded-lg';
+            } else if (section === 'archives') {
+                const dashboardHeader = document.getElementById('dashboardHeader');
+                if (dashboardHeader) dashboardHeader.classList.add('hidden');
+                const statsCards = document.getElementById('statsCards');
+                if (statsCards) statsCards.classList.add('hidden');
+                if (sectionActions) sectionActions.classList.add('hidden');
+                if (overviewTabs) overviewTabs.classList.add('hidden');
+                if (dashboardContent) dashboardContent.classList.remove('hidden');
+                if (archivesSection) archivesSection.classList.remove('hidden');
+                if (sidebarArchives) sidebarArchives.className = 'flex items-center px-3 py-2 text-sm text-white bg-primary rounded-lg';
+            } else if (section === 'settings') {
+                const dashboardHeader = document.getElementById('dashboardHeader');
+                if (dashboardHeader) dashboardHeader.classList.add('hidden');
+                const statsCards = document.getElementById('statsCards');
+                if (statsCards) statsCards.classList.add('hidden');
+                if (sectionActions) sectionActions.classList.add('hidden');
+                if (overviewTabs) overviewTabs.classList.add('hidden');
+                if (dashboardContent) dashboardContent.classList.remove('hidden');
+                if (settingsSection) settingsSection.classList.remove('hidden');
+                if (sidebarSettings) sidebarSettings.className = 'flex items-center px-3 py-2 text-sm text-white bg-primary rounded-lg';
+            }
+        }
+        function showAddDocument() {
+            document.getElementById('addDocumentModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function hideAddDocument() {
+            document.getElementById('addDocumentModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            document.getElementById('addDocumentForm').reset();
+        }
+        function handleAddDocument() {
+            const formData = new FormData(document.getElementById('addDocumentForm'));
+            showNotification('Document ajouté avec succès !', 'success');
+            hideAddDocument();
+            setTimeout(() => {
+                showSection('documents');
+            }, 1000);
+        }
+        function filterDocuments() {
+            const category = document.getElementById('categoryFilter').value;
+            const status = document.getElementById('statusFilter').value;
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            console.log('Filtrage des documents:', { category, status, search });
+        }
+        function quickAction(action) {
+            if (action === 'constitution') {
+                showNotification('Ouverture de la Constitution du Sénégal...', 'info');
+            } else if (action === 'decrets') {
+                showSection('documents');
+                document.getElementById('categoryFilter').value = 'decret';
+                filterDocuments();
+            } else if (action === 'statistics') {
+                showNotification('Génération des statistiques...', 'info');
+            }
+        }
+        const documentsSection = document.getElementById('documentsSection');
+        const messagesSection = document.getElementById('messagesSection');
+        const documentsStandalone = document.getElementById('documentsStandalone');
+        const messagesStandalone = document.getElementById('messagesStandalone');
+        if (documentsSection && documentsStandalone) {
+            documentsStandalone.innerHTML = documentsSection.innerHTML;
+            documentsStandalone.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+        }
+        if (messagesSection && messagesStandalone) {
+            messagesStandalone.innerHTML = messagesSection.innerHTML;
+            messagesStandalone.querySelectorAll('[id]').forEach((el) => el.removeAttribute('id'));
+        }
+        function unarchiveMessage(button) {
+            const card = button.closest('.bg-white');
+            if (card) card.remove();
+            showNotification('Message désarchivé', 'success');
+        }
+
+        const settingsLanguages = ['Français', 'Anglais', 'Wolof'];
+        let settingsLangIndex = 0;
+        const settingsLangLabel = document.getElementById('settingsLanguage');
+        const settingsLangBtn = document.getElementById('settingsLanguageBtn');
+        if (settingsLangBtn) {
+            settingsLangBtn.addEventListener('click', function () {
+                settingsLangIndex = (settingsLangIndex + 1) % settingsLanguages.length;
+                if (settingsLangLabel) settingsLangLabel.textContent = settingsLanguages[settingsLangIndex];
+            });
+        }
+
+        const settingsNotif = document.getElementById('settingsNotif');
+        if (settingsNotif) {
+            settingsNotif.addEventListener('click', function () {
+                const active = settingsNotif.textContent.trim() === 'Activées';
+                settingsNotif.textContent = active ? 'Désactivées' : 'Activées';
+                settingsNotif.classList.toggle('bg-primary/10', !active);
+                settingsNotif.classList.toggle('text-primary', !active);
+                settingsNotif.classList.toggle('bg-gray-100', active);
+                settingsNotif.classList.toggle('text-gray-600', active);
+            });
+        }
+
+        const themeToggles = document.querySelectorAll('.theme-toggle');
+        const themeIcons = document.querySelectorAll('.theme-icon');
+        const sidebarLogo = document.getElementById('sidebarLogo');
+        const savedTheme = localStorage.getItem('dashboardTheme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+        themeIcons.forEach((icon) => {
+            icon.className = document.body.classList.contains('dark-mode') ? 'ri-sun-line' : 'ri-moon-line';
+        });
+        if (sidebarLogo) {
+            sidebarLogo.src = document.body.classList.contains('dark-mode') ? 'logoDark.png' : 'logo.png';
+        }
+        themeToggles.forEach((toggle) => {
+            toggle.addEventListener('click', function () {
+                document.body.classList.toggle('dark-mode');
+                const isDark = document.body.classList.contains('dark-mode');
+                localStorage.setItem('dashboardTheme', isDark ? 'dark' : 'light');
+                themeIcons.forEach((icon) => {
+                    icon.className = isDark ? 'ri-sun-line' : 'ri-moon-line';
+                });
+                if (sidebarLogo) {
+                    sidebarLogo.src = isDark ? 'logoDark.png' : 'logo.png';
+                }
+            });
+        });
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-6 right-6 z-50 px-6 py-4 rounded-lg shadow-lg text-white font-medium transition-all duration-300 transform translate-x-full`;
+            if (type === 'success') {
+                notification.style.backgroundColor = '#00A651';
+            } else if (type === 'error') {
+                notification.style.backgroundColor = '#E31E24';
+            } else {
+                notification.style.backgroundColor = '#6b7280';
+            }
+            notification.innerHTML = `
+<div class="flex items-center space-x-3">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-${type === 'success' ? 'check' : type === 'error' ? 'close' : 'info'}-circle-line"></i>
+</div>
+<span>${message}</span>
+</div>
+`;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (document.body.contains(notification)) {
+                        document.body.removeChild(notification);
+                    }
+                }, 300);
+            }, 4000);
+        }
+    </script>
+    <script id="authenticationScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            showLogin();
+            if (loginForm) {
+                loginForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    handleLogin();
+                });
+            }
+            if (registerForm) {
+                registerForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    handleRegister();
+                });
+            }
+        });
+        function showLogin() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            loginForm.classList.remove('hidden');
+            registerForm.classList.add('hidden');
+            loginTab.className = 'flex-1 px-6 py-3 text-center font-medium bg-white text-primary shadow-sm border border-primary/20 transition-all duration-300 !rounded-button whitespace-nowrap';
+            registerTab.className = 'flex-1 px-6 py-3 text-center font-medium text-gray-600 hover:text-primary transition-all duration-300 !rounded-button whitespace-nowrap';
+        }
+        function showRegister() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+            loginTab.className = 'flex-1 px-6 py-3 text-center font-medium text-gray-600 hover:text-primary transition-all duration-300 !rounded-button whitespace-nowrap';
+            registerTab.className = 'flex-1 px-6 py-3 text-center font-medium bg-white text-primary shadow-sm border border-primary/20 transition-all duration-300 !rounded-button whitespace-nowrap';
+        }
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const icon = input.nextElementSibling.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'ri-eye-off-line';
+            } else {
+                input.type = 'password';
+                icon.className = 'ri-eye-line';
+            }
+        }
+        function toggleCheckbox(checkboxId) {
+            const checkbox = document.getElementById(checkboxId);
+            const checkmark = document.getElementById(checkboxId + 'Check');
+            const container = checkmark.parentElement;
+            if (checkbox.checked) {
+                checkbox.checked = false;
+                checkmark.style.opacity = '0';
+                container.style.backgroundColor = 'white';
+                container.style.borderColor = '#d1d5db';
+            } else {
+                checkbox.checked = true;
+                checkmark.style.opacity = '1';
+                container.style.backgroundColor = '#00A651';
+                container.style.borderColor = '#00A651';
+            }
+        }
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            showNotification('Connexion en cours...', 'info');
+            setTimeout(() => {
+                showNotification('Connexion réussie ! Redirection...', 'success');
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            }, 2000);
+        }
+        function handleRegister() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('registerEmail').value;
+            const ministry = document.getElementById('ministry').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const acceptTerms = document.getElementById('acceptTerms').checked;
+            if (password !== confirmPassword) {
+                showNotification('Les mots de passe ne correspondent pas', 'error');
+                return;
+            }
+            if (!acceptTerms) {
+                showNotification('Veuillez accepter les conditions d\'utilisation', 'error');
+                return;
+            }
+            if (password.length < 8) {
+                showNotification('Le mot de passe doit contenir au moins 8 caractères', 'error');
+                return;
+            }
+            showNotification('Création du compte en cours...', 'info');
+            setTimeout(() => {
+                showNotification('Compte créé avec succès ! Un email de validation a été envoyé.', 'success');
+                setTimeout(() => {
+                    showLogin();
+                }, 2000);
+            }, 2000);
+        }
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.className = `fixed top-6 right-6 z-50 px-6 py-4 rounded-lg shadow-lg text-white font-medium transition-all duration-300 transform translate-x-full`;
+            if (type === 'success') {
+                notification.style.backgroundColor = '#00A651';
+            } else if (type === 'error') {
+                notification.style.backgroundColor = '#E31E24';
+            } else {
+                notification.style.backgroundColor = '#6b7280';
+            }
+            notification.innerHTML = `
+<div class="flex items-center space-x-3">
+<div class="w-5 h-5 flex items-center justify-center">
+<i class="ri-${type === 'success' ? 'check' : type === 'error' ? 'close' : 'info'}-circle-line"></i>
+</div>
+<span>${message}</span>
+</div>
+`;
+            document.body.appendChild(notification);
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 4000);
+        }
+    </script>
+    <script id="chatbotScript">
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatInput = document.getElementById('chatInput');
+            if (chatInput) {
+                chatInput.addEventListener('keypress', function (e) {
+                    if (e.key === 'Enter') {
+                        sendMessage();
+                    }
+                });
+            }
+        });
+        function minimizeChatbot() {
+            document.getElementById('chatWindow').classList.add('hidden');
+            document.getElementById('chatMinimized').classList.remove('hidden');
+        }
+        function restoreChatbot() {
+            document.getElementById('chatWindow').classList.remove('hidden');
+            document.getElementById('chatMinimized').classList.add('hidden');
+        }
+        function sendMessage() {
+            const chatInput = document.getElementById('chatInput');
+            const chatMessages = document.getElementById('chatMessages');
+            const message = chatInput.value.trim();
+            if (message) {
+                const userMessage = document.createElement('div');
+                userMessage.className = 'flex items-start space-x-2 mb-4 justify-end';
+                userMessage.innerHTML = `
+<div class="bg-primary text-white rounded-lg p-3 max-w-xs">
+<p class="text-sm">${message}</p>
+</div>
+<div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+<span class="text-xs font-medium text-gray-600">AM</span>
+</div>
+`;
+                chatMessages.appendChild(userMessage);
+                setTimeout(() => {
+                    const botResponse = document.createElement('div');
+                    botResponse.className = 'flex items-start space-x-2 mb-4';
+                    botResponse.innerHTML = `
+<div class="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center flex-shrink-0">
+<div class="w-4 h-4 flex items-center justify-center">
+<i class="ri-robot-line text-white text-sm"></i>
+</div>
+</div>
+<div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+<p class="text-sm text-gray-700">Je peux vous aider à rechercher des documents spécifiques. Pouvez-vous me donner plus de détails sur ce que vous cherchez ?</p>
+</div>
+`;
+                    chatMessages.appendChild(botResponse);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+                chatInput.value = '';
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+    </script>
+</body>
+
+</html>

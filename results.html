@@ -96,705 +96,742 @@
         <aside
             class="fixed left-0 top-0 h-full w-80 bg-white shadow-md z-50 transform -translate-x-full transition-transform duration-300 md:translate-x-0 md:fixed md:w-64 relative"
             id="sidebar">
-        <div class="flex flex-col h-full">
-        <div class="p-6 border-b border-gray-200">
-            <div class="flex items-center justify-between mb-2">
-                <div class="flex items-center space-x-2">
-                     <img src="logo.png" alt="Logo GOV ID" id="sidebarLogo"
-                            class="w-50 rounded-lg object-contain" />
-                </div>
-                <button class="md:hidden p-2 text-gray-500 hover:text-primary"
-                    onclick="document.getElementById('sidebar').classList.add('-translate-x-full'); document.getElementById('sidebarOverlay').classList.add('hidden');">
-                    <div class="w-5 h-5 flex items-center justify-center">
-                        <i class="ri-close-line"></i>
-                    </div>
-                </button>
-            </div>
-        </div>
-
-        <nav class="p-4 space-y-2">
-            <a href="#" data-action="new-search"
-                class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
-                <div class="w-5 h-5 flex items-center justify-center mr-3">
-                    <i class="ri-add-line"></i>
-                </div>
-                Nouvelle recherche
-            </a>
-            <a href="#" data-action="api"
-                class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
-                <div class="w-5 h-5 flex items-center justify-center mr-3">
-                    <i class="ri-qr-code-line"></i>
-                </div>
-                Obtenir l'API
-            </a>
-            <a href="#" data-action="favorites"
-                class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
-                <div class="w-5 h-5 flex items-center justify-center mr-3">
-                    <i class="ri-bookmark-line"></i>
-                </div>
-                Favoris
-            </a>
-            <a href="#" data-action="settings"
-                class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
-                <div class="w-5 h-5 flex items-center justify-center mr-3">
-                    <i class="ri-settings-line"></i>
-                </div>
-                Paramètres
-            </a>
-            <a href="login.html"
-                class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
-                <div class="w-5 h-5 flex items-center justify-center mr-3">
-                    <i class="ri-logout-box-line"></i>
-                </div>
-                Se déconnecter
-            </a>
-        </nav>
-
-        <div class="p-6 border-t border-gray-200 pb-24">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-sm font-semibold text-gray-900">Historiques</h3>
-                <button class="text-xs underline text-accent hover:text-red-600" onclick="clearAllHistory()">
-                    Tout effacer
-                </button>
-            </div>
-            <div class="space-y-2 max-h-56 overflow-y-auto pr-1" id="searchHistory">
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
-                    <div class="flex-1">
-                        <a href="#" class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
-                            onclick="searchFromHistory('décret fonction publique')">décret fonction publique</a>
-                        <span class="text-xs text-gray-500">Il y a 2 min</span>
-                    </div>
-                    <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
-                        <div class="w-4 h-4 flex items-center justify-center">
-                            <i class="ri-close-line text-xs"></i>
+            <div class="flex flex-col h-full">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center space-x-2">
+                            <img src="logo.png" alt="Logo GOV ID" id="sidebarLogo"
+                                class="w-50 rounded-lg object-contain" />
                         </div>
-                    </button>
-                </div>
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
-                    <div class="flex-1">
-                        <a href="#" class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
-                            onclick="searchFromHistory('projet de loi finances')">projet de loi finances</a>
-                        <span class="text-xs text-gray-500">Il y a 15 min</span>
-                    </div>
-                    <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
-                        <div class="w-4 h-4 flex items-center justify-center">
-                            <i class="ri-close-line text-xs"></i>
-                        </div>
-                    </button>
-                </div>
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
-                    <div class="flex-1">
-                        <a href="#" class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
-                            onclick="searchFromHistory('projet de loi finances')">projet de loi finances</a>
-                        <span class="text-xs text-gray-500">Il y a 17 min</span>
-                    </div>
-                    <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
-                        <div class="w-4 h-4 flex items-center justify-center">
-                            <i class="ri-close-line text-xs"></i>
-                        </div>
-                    </button>
-                </div>
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
-                    <div class="flex-1">
-                        <a href="#" class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
-                            onclick="searchFromHistory('projet de loi finances')">projet de loi finances</a>
-                        <span class="text-xs text-gray-500">Il y a 15 min</span>
-                    </div>
-                    <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
-                        <div class="w-4 h-4 flex items-center justify-center">
-                            <i class="ri-close-line text-xs"></i>
-                        </div>
-                    </button>
-                </div>
-                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
-                    <div class="flex-1">
-                        <a href="#" class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
-                            onclick="searchFromHistory('constitution sénégal')">constitution sénégal</a>
-                        <span class="text-xs text-gray-500">Il y a 1 heure</span>
-                    </div>
-                    <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
-                        <div class="w-4 h-4 flex items-center justify-center">
-                            <i class="ri-close-line text-xs"></i>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
-            <div class="flex items-center gap-3">
-                <div
-                    class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center font-semibold">
-                    AM
-                </div>
-                <div class="flex-1">
-                    <div class="text-sm font-semibold text-gray-900">Aïssatou Mbaye</div>
-                    <div class="text-xs text-gray-500">Agent public</div>
-                </div>
-                <button class="text-gray-400 hover:text-primary" title="Profil">
-                    <i class="ri-user-3-line"></i>
-                </button>
-            </div>
-        </div>
-        </div>
-        </aside>
-
-    <!-- Menu toggle button for mobile -->
-    <button
-        class="fixed top-4 left-4 z-30 md:hidden p-2 bg-white rounded-lg shadow-sm text-gray-600 hover:text-primary transition-colors"
-        id="sidebarToggle">
-        <div class="w-6 h-6 flex items-center justify-center">
-            <i class="ri-menu-line text-lg"></i>
-        </div>
-    </button>
-
-    <!-- Theme toggle -->
-    <button id="themeToggle"
-        class="fixed top-4 right-4 z-30 p-2 bg-white rounded-lg shadow-sm text-gray-600 hover:text-primary transition-colors">
-        <div class="w-6 h-6 flex items-center justify-center">
-            <i class="ri-moon-line text-lg" id="themeIcon"></i>
-        </div>
-    </button>
-
-    <!-- Main content -->
-        <main class="min-h-screen md:ml-64">
-        <div class="px-6 py-8">
-            <div class="max-w-7xl mx-auto">
-                <div id="searchHeader" class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Recherchez dans les archives gouvernementales</h2>
-                    <p class="text-lg text-gray-600">Accédez aux décrets, projets de loi, documents officiels et
-                        archives du Gouvernement du Sénégal</p>
-                </div>
-
-                <div id="searchBar" class="relative max-w-3xl mx-auto mb-8">
-                    <div class="relative">
-                        <input type="text" placeholder="Rechercher des documents, décrets, projets de loi, archives..."
-                            class="w-full px-6 py-4 text-lg border-2 border-gray-200 rounded-2xl focus:border-primary focus:outline-none pr-16 shadow-sm"
-                            id="searchInput">
-                        <button id="searchButton"
-                            class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-primary text-white p-2 rounded-lg hover:bg-green-600 transition-colors !rounded-button whitespace-nowrap">
-                            <div class="w-6 h-6 flex items-center justify-center">
-                                <i class="ri-search-line text-lg"></i>
+                        <button class="md:hidden p-2 text-gray-500 hover:text-primary"
+                            onclick="document.getElementById('sidebar').classList.add('-translate-x-full'); document.getElementById('sidebarOverlay').classList.add('hidden');">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-close-line"></i>
                             </div>
                         </button>
                     </div>
-                    <div class="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-md mt-2 hidden"
-                        id="searchSuggestions">
-                        <div class="py-2">
-                            <div class="px-4 py-2 text-sm text-gray-500 font-medium">Suggestions</div>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                <div class="w-4 h-4 flex items-center justify-center mr-3">
-                                    <i class="ri-file-text-line"></i>
+                </div>
+
+                <nav class="p-4 space-y-2">
+                    <a href="#" data-action="new-search"
+                        class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3">
+                            <i class="ri-add-line"></i>
+                        </div>
+                        Nouvelle recherche
+                    </a>
+                    <a href="#" data-action="api"
+                        class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3">
+                            <i class="ri-qr-code-line"></i>
+                        </div>
+                        Obtenir l'API
+                    </a>
+                    <a href="#" data-action="favorites"
+                        class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3">
+                            <i class="ri-bookmark-line"></i>
+                        </div>
+                        Favoris
+                    </a>
+                    <a href="#" data-action="settings"
+                        class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3">
+                            <i class="ri-settings-line"></i>
+                        </div>
+                        Paramètres
+                    </a>
+                    <a href="login.html"
+                        class="flex items-center px-3 py-2 text-sm text-gray-700 hover:bg-primary/10 hover:text-primary rounded-lg transition-colors">
+                        <div class="w-5 h-5 flex items-center justify-center mr-3">
+                            <i class="ri-logout-box-line"></i>
+                        </div>
+                        Se déconnecter
+                    </a>
+                </nav>
+
+                <div class="p-6 border-t border-gray-200 pb-24">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm font-semibold text-gray-900">Historiques</h3>
+                        <button class="text-xs underline text-accent hover:text-red-600" onclick="clearAllHistory()">
+                            Tout effacer
+                        </button>
+                    </div>
+                    <div class="space-y-2 max-h-56 overflow-y-auto pr-1" id="searchHistory">
+                        <div
+                            class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
+                            <div class="flex-1">
+                                <a href="#"
+                                    class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
+                                    onclick="searchFromHistory('décret fonction publique')">décret fonction publique</a>
+                                <span class="text-xs text-gray-500">Il y a 2 min</span>
+                            </div>
+                            <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-close-line text-xs"></i>
                                 </div>
-                                Décret sur la fonction publique 2024
-                            </a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                <div class="w-4 h-4 flex items-center justify-center mr-3">
-                                    <i class="ri-government-line"></i>
+                            </button>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
+                            <div class="flex-1">
+                                <a href="#"
+                                    class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
+                                    onclick="searchFromHistory('projet de loi finances')">projet de loi finances</a>
+                                <span class="text-xs text-gray-500">Il y a 15 min</span>
+                            </div>
+                            <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-close-line text-xs"></i>
                                 </div>
-                                Projet de loi de finances 2024
-                            </a>
-                            <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                <div class="w-4 h-4 flex items-center justify-center mr-3">
-                                    <i class="ri-book-line"></i>
+                            </button>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
+                            <div class="flex-1">
+                                <a href="#"
+                                    class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
+                                    onclick="searchFromHistory('projet de loi finances')">projet de loi finances</a>
+                                <span class="text-xs text-gray-500">Il y a 17 min</span>
+                            </div>
+                            <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-close-line text-xs"></i>
                                 </div>
-                                Archives constitutionnelles
-                            </a>
+                            </button>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
+                            <div class="flex-1">
+                                <a href="#"
+                                    class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
+                                    onclick="searchFromHistory('projet de loi finances')">projet de loi finances</a>
+                                <span class="text-xs text-gray-500">Il y a 15 min</span>
+                            </div>
+                            <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-close-line text-xs"></i>
+                                </div>
+                            </button>
+                        </div>
+                        <div
+                            class="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200/60">
+                            <div class="flex-1">
+                                <a href="#"
+                                    class="text-sm text-gray-700 hover:text-primary truncate block underline underline-offset-4 decoration-gray-300"
+                                    onclick="searchFromHistory('constitution sénégal')">constitution sénégal</a>
+                                <span class="text-xs text-gray-500">Il y a 1 heure</span>
+                            </div>
+                            <button class="text-gray-400 hover:text-accent" onclick="removeFromHistory(this)">
+                                <div class="w-4 h-4 flex items-center justify-center">
+                                    <i class="ri-close-line text-xs"></i>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </div>
-
-                <div id="filterChips" class="flex flex-wrap justify-center gap-3 mb-8">
-                    <button
-                        class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
-                        <div class="w-5 h-5 flex items-center justify-center">
-                            <i class="ri-fire-line"></i>
+                <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 bg-white">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-10 h-10 bg-primary/10 text-primary rounded-full flex items-center justify-center font-semibold">
+                            AM
                         </div>
-                        <span>Les plus recherchés</span>
-                    </button>
-                    <button
-                        class="px-6 py-3 bg-secondary text-gray-800 rounded-lg hover:bg-yellow-400 transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
-                        <div class="w-5 h-5 flex items-center justify-center">
-                            <i class="ri-time-line"></i>
+                        <div class="flex-1">
+                            <div class="text-sm font-semibold text-gray-900">Aïssatou Mbaye</div>
+                            <div class="text-xs text-gray-500">Agent public</div>
                         </div>
-                        <span>Récemment ajoutés</span>
-                    </button>
-                    <button
-                        class="px-6 py-3 bg-white border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
-                        <div class="w-5 h-5 flex items-center justify-center">
-                            <i class="ri-file-text-line"></i>
-                        </div>
-                        <span>Décrets</span>
-                    </button>
-                    <button
-                        class="px-6 py-3 bg-white border-2 border-secondary text-gray-700 rounded-lg hover:bg-secondary hover:text-gray-800 transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
-                        <div class="w-5 h-5 flex items-center justify-center">
-                            <i class="ri-government-line"></i>
-                        </div>
-                        <span>Projets de loi</span>
-                    </button>
-                    <button
-                        class="px-6 py-3 bg-white border-2 border-accent text-accent rounded-lg hover:bg-accent hover:text-white transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
-                        <div class="w-5 h-5 flex items-center justify-center">
-                            <i class="ri-archive-line"></i>
-                        </div>
-                        <span>Archives historiques</span>
-                    </button>
+                        <button class="text-gray-400 hover:text-primary" title="Profil">
+                            <i class="ri-user-3-line"></i>
+                        </button>
+                    </div>
                 </div>
+            </div>
+        </aside>
 
-                <div id="contentArea" class="w-full">
-                    <div id="searchContent">
-                        <div id="emptyState"
-                            class="bg-white rounded-lg shadow-sm border border-gray-200 p-10 text-center">
-                            <div
-                                class="w-14 h-14 mx-auto mb-4 bg-primary/10 text-primary rounded-full flex items-center justify-center">
-                                <i class="ri-search-line text-2xl"></i>
-                            </div>
-                            <h3 class="text-lg font-semibold text-gray-900 mb-2">Aucun résultat pour le moment</h3>
-                            <p class="text-sm text-gray-600">Lancez une recherche pour afficher les résultats.</p>
+        <!-- Menu toggle button for mobile -->
+        <button
+            class="fixed top-4 left-4 z-30 md:hidden p-2 bg-white rounded-lg shadow-sm text-gray-600 hover:text-primary transition-colors"
+            id="sidebarToggle">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-menu-line text-lg"></i>
+            </div>
+        </button>
+
+        <!-- Theme toggle -->
+        <button id="themeToggle"
+            class="fixed top-4 right-4 z-30 p-2 bg-white rounded-lg shadow-sm text-gray-600 hover:text-primary transition-colors">
+            <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-moon-line text-lg" id="themeIcon"></i>
+            </div>
+        </button>
+
+        <!-- Main content -->
+        <main class="min-h-screen md:ml-64">
+            <div class="px-6 py-8">
+                <div class="max-w-7xl mx-auto">
+                    <div id="searchHeader" class="text-center mb-8">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-4">Recherchez dans les archives gouvernementales
+                        </h2>
+                        <p class="text-lg text-gray-600">Accédez aux décrets, projets de loi, documents officiels et
+                            archives du Gouvernement du Sénégal</p>
+                    </div>
+
+                    <div id="searchBar" class="relative max-w-3xl mx-auto mb-8">
+                        <div class="relative">
+                            <input type="text"
+                                placeholder="Rechercher des documents, décrets, projets de loi, archives..."
+                                class="w-full px-6 py-4 text-lg border-2 border-gray-200 rounded-2xl focus:border-primary focus:outline-none pr-16 shadow-sm"
+                                id="searchInput">
+                            <button id="searchButton"
+                                class="absolute right-3 top-1/2 transform -translate-y-1/2 bg-primary text-white p-2 rounded-lg hover:bg-green-600 transition-colors !rounded-button whitespace-nowrap">
+                                <div class="w-6 h-6 flex items-center justify-center">
+                                    <i class="ri-search-line text-lg"></i>
+                                </div>
+                            </button>
                         </div>
-                        <div id="resultsSection" class="hidden bg-white rounded-lg shadow-sm border border-gray-200">
-                        <div class="p-6 border-b border-gray-200">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-lg font-semibold text-gray-900">Résultats de recherche</h3>
-                                <div class="flex items-center space-x-4">
-                                    <span class="text-sm text-gray-600">1,247 documents trouvés</span>
-                                    <button
-                                        class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
-                                        <div class="w-4 h-4 flex items-center justify-center">
-                                            <i class="ri-download-line"></i>
+                        <div class="absolute top-full left-0 right-0 bg-white border border-gray-200 rounded-lg shadow-md mt-2 hidden"
+                            id="searchSuggestions">
+                            <div class="py-2">
+                                <div class="px-4 py-2 text-sm text-gray-500 font-medium">Suggestions</div>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-3">
+                                        <i class="ri-file-text-line"></i>
+                                    </div>
+                                    Décret sur la fonction publique 2024
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-3">
+                                        <i class="ri-government-line"></i>
+                                    </div>
+                                    Projet de loi de finances 2024
+                                </a>
+                                <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    <div class="w-4 h-4 flex items-center justify-center mr-3">
+                                        <i class="ri-book-line"></i>
+                                    </div>
+                                    Archives constitutionnelles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="filterChips" class="flex flex-wrap justify-center gap-3 mb-8">
+                        <button
+                            class="px-6 py-3 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-fire-line"></i>
+                            </div>
+                            <span>Les plus recherchés</span>
+                        </button>
+                        <button
+                            class="px-6 py-3 bg-secondary text-gray-800 rounded-lg hover:bg-yellow-400 transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-time-line"></i>
+                            </div>
+                            <span>Récemment ajoutés</span>
+                        </button>
+                        <button
+                            class="px-6 py-3 bg-white border-2 border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-file-text-line"></i>
+                            </div>
+                            <span>Décrets</span>
+                        </button>
+                        <button
+                            class="px-6 py-3 bg-white border-2 border-secondary text-gray-700 rounded-lg hover:bg-secondary hover:text-gray-800 transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-government-line"></i>
+                            </div>
+                            <span>Projets de loi</span>
+                        </button>
+                        <button
+                            class="px-6 py-3 bg-white border-2 border-accent text-accent rounded-lg hover:bg-accent hover:text-white transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
+                            <div class="w-5 h-5 flex items-center justify-center">
+                                <i class="ri-archive-line"></i>
+                            </div>
+                            <span>Archives historiques</span>
+                        </button>
+                    </div>
+
+                    <div id="contentArea" class="w-full">
+                        <div id="searchContent">
+                            <div id="emptyState"
+                                class="bg-white rounded-lg shadow-sm border border-gray-200 p-10 text-center">
+                                <div
+                                    class="w-14 h-14 mx-auto mb-4 bg-primary/10 text-primary rounded-full flex items-center justify-center">
+                                    <i class="ri-search-line text-2xl"></i>
+                                </div>
+                                <h3 class="text-lg font-semibold text-gray-900 mb-2">Aucun résultat pour le moment</h3>
+                                <p class="text-sm text-gray-600">Lancez une recherche pour afficher les résultats.</p>
+                            </div>
+                            <div id="resultsSection"
+                                class="hidden bg-white rounded-lg shadow-sm border border-gray-200">
+                                <div class="p-6 border-b border-gray-200">
+                                    <div class="flex items-center justify-between">
+                                        <h3 class="text-lg font-semibold text-gray-900">Résultats de recherche</h3>
+                                        <div class="flex items-center space-x-4">
+                                            <span class="text-sm text-gray-600">1,247 documents trouvés</span>
+                                            <button
+                                                class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors flex items-center space-x-2 !rounded-button whitespace-nowrap">
+                                                <div class="w-4 h-4 flex items-center justify-center">
+                                                    <i class="ri-download-line"></i>
+                                                </div>
+                                                <span>Exporter</span>
+                                            </button>
                                         </div>
-                                        <span>Exporter</span>
+                                    </div>
+                                </div>
+
+                                <div class="p-6 space-y-4">
+                                    <div class="result-card border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors"
+                                        data-title="Décret n° 2024-001 relatif à la fonction publique"
+                                        data-summary="Ce décret définit les nouvelles modalités de recrutement et de gestion des fonctionnaires de l'État sénégalais, incluant les procédures de concours et les critères d'évaluation."
+                                        data-date="15 janvier 2024" data-ministry="Ministère de la Fonction Publique"
+                                        data-type="Décret">
+                                        <div class="flex flex-wrap items-start justify-between gap-3">
+                                            <div class="flex-1">
+                                                <h4 class="text-lg font-medium text-gray-900 mb-2">Décret n° 2024-001
+                                                    relatif à
+                                                    la fonction publique</h4>
+                                                <p class="text-sm text-gray-600 mb-3">Ce décret définit les nouvelles
+                                                    modalités
+                                                    de recrutement et de gestion des fonctionnaires de l'État
+                                                    sénégalais,
+                                                    incluant les procédures de concours et les critères d'évaluation...
+                                                </p>
+                                                <div
+                                                    class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
+                                                    <span class="flex items-center space-x-1">
+                                                        <div class="w-3 h-3 flex items-center justify-center">
+                                                            <i class="ri-calendar-line"></i>
+                                                        </div>
+                                                        <span>15 janvier 2024</span>
+                                                    </span>
+                                                    <span class="flex items-center space-x-1">
+                                                        <div class="w-3 h-3 flex items-center justify-center">
+                                                            <i class="ri-government-line"></i>
+                                                        </div>
+                                                        <span>Ministère de la Fonction Publique</span>
+                                                    </span>
+                                                    <span
+                                                        class="px-2 py-1 bg-primary/10 text-primary rounded-full">Décret</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-2 ml-4 flex-wrap sm:flex-nowrap">
+                                                <button
+                                                    class="p-2 text-gray-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                                                    title="Télécharger">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-download-line"></i>
+                                                    </div>
+                                                </button>
+                                                <button
+                                                    class="p-2 text-gray-500 hover:text-secondary hover:bg-secondary/10 rounded-lg transition-colors"
+                                                    title="Partager">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-share-line"></i>
+                                                    </div>
+                                                </button>
+                                                <button
+                                                    class="result-details p-2 text-gray-500 hover:text-accent hover:bg-accent/10 rounded-lg transition-colors"
+                                                    title="Voir détails">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-eye-line"></i>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="result-card border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors"
+                                        data-title="Projet de loi de finances pour l'année 2024"
+                                        data-summary="Le projet de loi de finances 2024 présente les orientations budgétaires du gouvernement avec un budget total de 5 200 milliards FCFA."
+                                        data-date="22 janvier 2024" data-ministry="Ministère des Finances"
+                                        data-type="Projet de loi">
+                                        <div class="flex flex-wrap items-start justify-between gap-3">
+                                            <div class="flex-1">
+                                                <h4 class="text-lg font-medium text-gray-900 mb-2">Projet de loi de
+                                                    finances
+                                                    pour l'année 2024</h4>
+                                                <p class="text-sm text-gray-600 mb-3">Le projet de loi de finances 2024
+                                                    présente
+                                                    les orientations budgétaires du gouvernement avec un budget total de
+                                                    5 200
+                                                    milliards FCFA, axé sur le développement des infrastructures...</p>
+                                                <div
+                                                    class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
+                                                    <span class="flex items-center space-x-1">
+                                                        <div class="w-3 h-3 flex items-center justify-center">
+                                                            <i class="ri-calendar-line"></i>
+                                                        </div>
+                                                        <span>28 décembre 2023</span>
+                                                    </span>
+                                                    <span class="flex items-center space-x-1">
+                                                        <div class="w-3 h-3 flex items-center justify-center">
+                                                            <i class="ri-government-line"></i>
+                                                        </div>
+                                                        <span>Ministère des Finances</span>
+                                                    </span>
+                                                    <span
+                                                        class="px-2 py-1 bg-secondary/20 text-yellow-700 rounded-full">Projet
+                                                        de loi</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-2 ml-4 flex-wrap sm:flex-nowrap">
+                                                <button
+                                                    class="p-2 text-gray-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                                                    title="Télécharger">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-download-line"></i>
+                                                    </div>
+                                                </button>
+                                                <button
+                                                    class="p-2 text-gray-500 hover:text-secondary hover:bg-secondary/10 rounded-lg transition-colors"
+                                                    title="Partager">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-share-line"></i>
+                                                    </div>
+                                                </button>
+                                                <button
+                                                    class="result-details p-2 text-gray-500 hover:text-accent hover:bg-accent/10 rounded-lg transition-colors"
+                                                    title="Voir détails">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-eye-line"></i>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="result-card border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors"
+                                        data-title="Arrêté ministériel sur l'organisation des élections locales"
+                                        data-summary="Cet arrêté définit les modalités d'organisation des élections locales de 2024, incluant le calendrier électoral et les procédures d'inscription."
+                                        data-date="8 février 2024" data-ministry="Ministère de l'Intérieur"
+                                        data-type="Arrêté">
+                                        <div class="flex flex-wrap items-start justify-between gap-3">
+                                            <div class="flex-1">
+                                                <h4 class="text-lg font-medium text-gray-900 mb-2">Arrêté ministériel
+                                                    sur
+                                                    l'organisation des élections locales</h4>
+                                                <p class="text-sm text-gray-600 mb-3">Cet arrêté définit les modalités
+                                                    d'organisation des élections locales de 2024, incluant le calendrier
+                                                    électoral, les procédures d'inscription et les conditions de
+                                                    candidature...
+                                                </p>
+                                                <div
+                                                    class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
+                                                    <span class="flex items-center space-x-1">
+                                                        <div class="w-3 h-3 flex items-center justify-center">
+                                                            <i class="ri-calendar-line"></i>
+                                                        </div>
+                                                        <span>8 février 2024</span>
+                                                    </span>
+                                                    <span class="flex items-center space-x-1">
+                                                        <div class="w-3 h-3 flex items-center justify-center">
+                                                            <i class="ri-government-line"></i>
+                                                        </div>
+                                                        <span>Ministère de l'Intérieur</span>
+                                                    </span>
+                                                    <span
+                                                        class="px-2 py-1 bg-accent/10 text-accent rounded-full">Arrêté</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-2 ml-4 flex-wrap sm:flex-nowrap">
+                                                <button
+                                                    class="p-2 text-gray-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                                                    title="Télécharger">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-download-line"></i>
+                                                    </div>
+                                                </button>
+                                                <button
+                                                    class="p-2 text-gray-500 hover:text-secondary hover:bg-secondary/10 rounded-lg transition-colors"
+                                                    title="Partager">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-share-line"></i>
+                                                    </div>
+                                                </button>
+                                                <button
+                                                    class="result-details p-2 text-gray-500 hover:text-accent hover:bg-accent/10 rounded-lg transition-colors"
+                                                    title="Voir détails">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-eye-line"></i>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="result-card border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors"
+                                        data-title="Constitution de la République du Sénégal - Version consolidée 2024"
+                                        data-summary="Version consolidée de la Constitution sénégalaise incluant tous les amendements adoptés jusqu'en 2024, avec annotations et références jurisprudentielles."
+                                        data-date="1er mars 2024" data-ministry="Conseil Constitutionnel"
+                                        data-type="Constitution">
+                                        <div class="flex flex-wrap items-start justify-between gap-3">
+                                            <div class="flex-1">
+                                                <h4 class="text-lg font-medium text-gray-900 mb-2">Constitution de la
+                                                    République
+                                                    du Sénégal - Version consolidée 2024</h4>
+                                                <p class="text-sm text-gray-600 mb-3">Version consolidée de la
+                                                    Constitution
+                                                    sénégalaise incluant tous les amendements adoptés jusqu'en 2024,
+                                                    avec
+                                                    annotations et références jurisprudentielles...</p>
+                                                <div
+                                                    class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
+                                                    <span class="flex items-center space-x-1">
+                                                        <div class="w-3 h-3 flex items-center justify-center">
+                                                            <i class="ri-calendar-line"></i>
+                                                        </div>
+                                                        <span>1er mars 2024</span>
+                                                    </span>
+                                                    <span class="flex items-center space-x-1">
+                                                        <div class="w-3 h-3 flex items-center justify-center">
+                                                            <i class="ri-government-line"></i>
+                                                        </div>
+                                                        <span>Conseil Constitutionnel</span>
+                                                    </span>
+                                                    <span
+                                                        class="px-2 py-1 bg-primary/10 text-primary rounded-full">Constitution</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center gap-2 ml-4 flex-wrap sm:flex-nowrap">
+                                                <button
+                                                    class="p-2 text-gray-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                                                    title="Télécharger">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-download-line"></i>
+                                                    </div>
+                                                </button>
+                                                <button
+                                                    class="p-2 text-gray-500 hover:text-secondary hover:bg-secondary/10 rounded-lg transition-colors"
+                                                    title="Partager">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-share-line"></i>
+                                                    </div>
+                                                </button>
+                                                <button
+                                                    class="result-details p-2 text-gray-500 hover:text-accent hover:bg-accent/10 rounded-lg transition-colors"
+                                                    title="Voir détails">
+                                                    <div class="w-5 h-5 flex items-center justify-center">
+                                                        <i class="ri-eye-line"></i>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="p-6 border-t border-gray-200">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-gray-600">Affichage de 1-5 sur 1,247 résultats</span>
+                                        <div class="flex items-center gap-2 flex-wrap">
+                                            <button
+                                                class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">Précédent</button>
+                                            <button
+                                                class="px-2 py-2 sm:px-3 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors !rounded-button whitespace-nowrap">1</button>
+                                            <button
+                                                class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">2</button>
+                                            <button
+                                                class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">3</button>
+                                            <span class="px-1 text-gray-500">...</span>
+                                            <button
+                                                class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">250</button>
+                                            <button
+                                                class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">Suivant</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="favoritesContent"
+                            class="hidden bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-semibold text-gray-900">Vos favoris</h3>
+                                <span class="text-sm text-gray-500">3 éléments enregistrés</span>
+                            </div>
+                            <div class="space-y-4">
+                                <div class="favorite-card border border-gray-200 rounded-lg p-4"
+                                    data-title="Code du Travail 2024"
+                                    data-summary="Version mise à jour du code du travail." data-date="12 janvier 2024"
+                                    data-ministry="Ministère du Travail" data-type="Décret">
+                                    <div class="flex items-start justify-between gap-3">
+                                        <div>
+                                            <h4 class="text-base font-medium text-gray-900 mb-1">Code du Travail 2024
+                                            </h4>
+                                            <p class="text-sm text-gray-600">Version mise à jour du code du travail.</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button class="favorite-details text-gray-500 hover:text-primary"
+                                                title="Voir le favori">
+                                                <i class="ri-eye-line text-lg"></i>
+                                            </button>
+                                            <button class="text-accent hover:text-red-600" title="Retirer des favoris"
+                                                onclick="removeFavorite(this)">
+                                                <i class="ri-bookmark-fill text-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="favorite-card border border-gray-200 rounded-lg p-4"
+                                    data-title="Loi de Finances 2024"
+                                    data-summary="Budget national pour l'exercice 2024." data-date="28 décembre 2023"
+                                    data-ministry="Ministère des Finances" data-type="Loi">
+                                    <div class="flex items-start justify-between gap-3">
+                                        <div>
+                                            <h4 class="text-base font-medium text-gray-900 mb-1">Loi de Finances 2024
+                                            </h4>
+                                            <p class="text-sm text-gray-600">Budget national pour l'exercice 2024.</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button class="favorite-details text-gray-500 hover:text-primary"
+                                                title="Voir le favori">
+                                                <i class="ri-eye-line text-lg"></i>
+                                            </button>
+                                            <button class="text-accent hover:text-red-600" title="Retirer des favoris"
+                                                onclick="removeFavorite(this)">
+                                                <i class="ri-bookmark-fill text-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="favorite-card border border-gray-200 rounded-lg p-4"
+                                    data-title="Constitution 2024" data-summary="Version consolidée et annotée."
+                                    data-date="1er mars 2024" data-ministry="Conseil Constitutionnel"
+                                    data-type="Constitution">
+                                    <div class="flex items-start justify-between gap-3">
+                                        <div>
+                                            <h4 class="text-base font-medium text-gray-900 mb-1">Constitution 2024</h4>
+                                            <p class="text-sm text-gray-600">Version consolidée et annotée.</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button class="favorite-details text-gray-500 hover:text-primary"
+                                                title="Voir le favori">
+                                                <i class="ri-eye-line text-lg"></i>
+                                            </button>
+                                            <button class="text-accent hover:text-red-600" title="Retirer des favoris"
+                                                onclick="removeFavorite(this)">
+                                                <i class="ri-bookmark-fill text-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="favorite-card border border-gray-200 rounded-lg p-4"
+                                    data-title="Code du Travail 2024"
+                                    data-summary="Version mise à jour du code du travail." data-date="12 janvier 2024"
+                                    data-ministry="Ministère du Travail" data-type="Décret">
+                                    <div class="flex items-start justify-between gap-3">
+                                        <div>
+                                            <h4 class="text-base font-medium text-gray-900 mb-1">Code du Travail 2024
+                                            </h4>
+                                            <p class="text-sm text-gray-600">Version mise à jour du code du travail.</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button class="favorite-details text-gray-500 hover:text-primary"
+                                                title="Voir le favori">
+                                                <i class="ri-eye-line text-lg"></i>
+                                            </button>
+                                            <button class="text-accent hover:text-red-600" title="Retirer des favoris"
+                                                onclick="removeFavorite(this)">
+                                                <i class="ri-bookmark-fill text-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="favorite-card border border-gray-200 rounded-lg p-4"
+                                    data-title="Loi de Finances 2024"
+                                    data-summary="Budget national pour l'exercice 2024." data-date="28 décembre 2023"
+                                    data-ministry="Ministère des Finances" data-type="Loi">
+                                    <div class="flex items-start justify-between gap-3">
+                                        <div>
+                                            <h4 class="text-base font-medium text-gray-900 mb-1">Loi de Finances 2024
+                                            </h4>
+                                            <p class="text-sm text-gray-600">Budget national pour l'exercice 2024.</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button class="favorite-details text-gray-500 hover:text-primary"
+                                                title="Voir le favori">
+                                                <i class="ri-eye-line text-lg"></i>
+                                            </button>
+                                            <button class="text-accent hover:text-red-600" title="Retirer des favoris"
+                                                onclick="removeFavorite(this)">
+                                                <i class="ri-bookmark-fill text-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="favorite-card border border-gray-200 rounded-lg p-4"
+                                    data-title="Constitution 2024" data-summary="Version consolidée et annotée."
+                                    data-date="1er mars 2024" data-ministry="Conseil Constitutionnel"
+                                    data-type="Constitution">
+                                    <div class="flex items-start justify-between gap-3">
+                                        <div>
+                                            <h4 class="text-base font-medium text-gray-900 mb-1">Constitution 2024</h4>
+                                            <p class="text-sm text-gray-600">Version consolidée et annotée.</p>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <button class="favorite-details text-gray-500 hover:text-primary"
+                                                title="Voir le favori">
+                                                <i class="ri-eye-line text-lg"></i>
+                                            </button>
+                                            <button class="text-accent hover:text-red-600" title="Retirer des favoris"
+                                                onclick="removeFavorite(this)">
+                                                <i class="ri-bookmark-fill text-lg"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="settingsContent"
+                            class="hidden bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-6">Paramètres</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Notifications</div>
+                                        <div class="text-xs text-gray-500">Recevoir les alertes par email</div>
+                                    </div>
+                                    <button id="notifToggle"
+                                        class="px-3 py-2 bg-primary/10 text-primary rounded-lg text-xs !rounded-button"
+                                        onclick="toggleNotifications()">
+                                        Activées
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Langue</div>
+                                        <div class="text-xs text-gray-500" id="languageLabel">Français (par défaut)
+                                        </div>
+                                    </div>
+                                    <button id="languageToggle"
+                                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button"
+                                        onclick="cycleLanguage()">
+                                        Modifier
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+                                    <div>
+                                        <div class="text-sm font-medium text-gray-900">Sécurité</div>
+                                        <div class="text-xs text-gray-500">Gestion des accès et clés API</div>
+                                    </div>
+                                    <button
+                                        class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button"
+                                        onclick="openModal('apiModal')">
+                                        Ouvrir
                                     </button>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="p-6 space-y-4">
-                            <div class="result-card border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors"
-                                data-title="Décret n° 2024-001 relatif à la fonction publique"
-                                data-summary="Ce décret définit les nouvelles modalités de recrutement et de gestion des fonctionnaires de l'État sénégalais, incluant les procédures de concours et les critères d'évaluation."
-                                data-date="15 janvier 2024" data-ministry="Ministère de la Fonction Publique"
-                                data-type="Décret">
-                                <div class="flex flex-wrap items-start justify-between gap-3">
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-gray-900 mb-2">Décret n° 2024-001 relatif à
-                                            la fonction publique</h4>
-                                        <p class="text-sm text-gray-600 mb-3">Ce décret définit les nouvelles modalités
-                                            de recrutement et de gestion des fonctionnaires de l'État sénégalais,
-                                            incluant les procédures de concours et les critères d'évaluation...</p>
-                                        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
-                                            <span class="flex items-center space-x-1">
-                                                <div class="w-3 h-3 flex items-center justify-center">
-                                                    <i class="ri-calendar-line"></i>
-                                                </div>
-                                                <span>15 janvier 2024</span>
-                                            </span>
-                                            <span class="flex items-center space-x-1">
-                                                <div class="w-3 h-3 flex items-center justify-center">
-                                                    <i class="ri-government-line"></i>
-                                                </div>
-                                                <span>Ministère de la Fonction Publique</span>
-                                            </span>
-                                            <span
-                                                class="px-2 py-1 bg-primary/10 text-primary rounded-full">Décret</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-2 ml-4 flex-wrap sm:flex-nowrap">
-                                        <button
-                                            class="p-2 text-gray-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
-                                            title="Télécharger">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-download-line"></i>
-                                            </div>
-                                        </button>
-                                        <button
-                                            class="p-2 text-gray-500 hover:text-secondary hover:bg-secondary/10 rounded-lg transition-colors"
-                                            title="Partager">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-share-line"></i>
-                                            </div>
-                                        </button>
-                                        <button
-                                            class="result-details p-2 text-gray-500 hover:text-accent hover:bg-accent/10 rounded-lg transition-colors"
-                                            title="Voir détails">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-eye-line"></i>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="result-card border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors"
-                                data-title="Projet de loi de finances pour l'année 2024"
-                                data-summary="Le projet de loi de finances 2024 présente les orientations budgétaires du gouvernement avec un budget total de 5 200 milliards FCFA."
-                                data-date="22 janvier 2024" data-ministry="Ministère des Finances"
-                                data-type="Projet de loi">
-                                <div class="flex flex-wrap items-start justify-between gap-3">
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-gray-900 mb-2">Projet de loi de finances
-                                            pour l'année 2024</h4>
-                                        <p class="text-sm text-gray-600 mb-3">Le projet de loi de finances 2024 présente
-                                            les orientations budgétaires du gouvernement avec un budget total de 5 200
-                                            milliards FCFA, axé sur le développement des infrastructures...</p>
-                                        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
-                                            <span class="flex items-center space-x-1">
-                                                <div class="w-3 h-3 flex items-center justify-center">
-                                                    <i class="ri-calendar-line"></i>
-                                                </div>
-                                                <span>28 décembre 2023</span>
-                                            </span>
-                                            <span class="flex items-center space-x-1">
-                                                <div class="w-3 h-3 flex items-center justify-center">
-                                                    <i class="ri-government-line"></i>
-                                                </div>
-                                                <span>Ministère des Finances</span>
-                                            </span>
-                                            <span class="px-2 py-1 bg-secondary/20 text-yellow-700 rounded-full">Projet
-                                                de loi</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-2 ml-4 flex-wrap sm:flex-nowrap">
-                                        <button
-                                            class="p-2 text-gray-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
-                                            title="Télécharger">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-download-line"></i>
-                                            </div>
-                                        </button>
-                                        <button
-                                            class="p-2 text-gray-500 hover:text-secondary hover:bg-secondary/10 rounded-lg transition-colors"
-                                            title="Partager">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-share-line"></i>
-                                            </div>
-                                        </button>
-                                        <button
-                                            class="result-details p-2 text-gray-500 hover:text-accent hover:bg-accent/10 rounded-lg transition-colors"
-                                            title="Voir détails">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-eye-line"></i>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="result-card border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors"
-                                data-title="Arrêté ministériel sur l'organisation des élections locales"
-                                data-summary="Cet arrêté définit les modalités d'organisation des élections locales de 2024, incluant le calendrier électoral et les procédures d'inscription."
-                                data-date="8 février 2024" data-ministry="Ministère de l'Intérieur" data-type="Arrêté">
-                                <div class="flex flex-wrap items-start justify-between gap-3">
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-gray-900 mb-2">Arrêté ministériel sur
-                                            l'organisation des élections locales</h4>
-                                        <p class="text-sm text-gray-600 mb-3">Cet arrêté définit les modalités
-                                            d'organisation des élections locales de 2024, incluant le calendrier
-                                            électoral, les procédures d'inscription et les conditions de candidature...
-                                        </p>
-                                        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
-                                            <span class="flex items-center space-x-1">
-                                                <div class="w-3 h-3 flex items-center justify-center">
-                                                    <i class="ri-calendar-line"></i>
-                                                </div>
-                                                <span>8 février 2024</span>
-                                            </span>
-                                            <span class="flex items-center space-x-1">
-                                                <div class="w-3 h-3 flex items-center justify-center">
-                                                    <i class="ri-government-line"></i>
-                                                </div>
-                                                <span>Ministère de l'Intérieur</span>
-                                            </span>
-                                            <span class="px-2 py-1 bg-accent/10 text-accent rounded-full">Arrêté</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-2 ml-4 flex-wrap sm:flex-nowrap">
-                                        <button
-                                            class="p-2 text-gray-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
-                                            title="Télécharger">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-download-line"></i>
-                                            </div>
-                                        </button>
-                                        <button
-                                            class="p-2 text-gray-500 hover:text-secondary hover:bg-secondary/10 rounded-lg transition-colors"
-                                            title="Partager">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-share-line"></i>
-                                            </div>
-                                        </button>
-                                        <button
-                                            class="result-details p-2 text-gray-500 hover:text-accent hover:bg-accent/10 rounded-lg transition-colors"
-                                            title="Voir détails">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-eye-line"></i>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="result-card border border-gray-200 rounded-lg p-4 hover:border-primary transition-colors"
-                                data-title="Constitution de la République du Sénégal - Version consolidée 2024"
-                                data-summary="Version consolidée de la Constitution sénégalaise incluant tous les amendements adoptés jusqu'en 2024, avec annotations et références jurisprudentielles."
-                                data-date="1er mars 2024" data-ministry="Conseil Constitutionnel"
-                                data-type="Constitution">
-                                <div class="flex flex-wrap items-start justify-between gap-3">
-                                    <div class="flex-1">
-                                        <h4 class="text-lg font-medium text-gray-900 mb-2">Constitution de la République
-                                            du Sénégal - Version consolidée 2024</h4>
-                                        <p class="text-sm text-gray-600 mb-3">Version consolidée de la Constitution
-                                            sénégalaise incluant tous les amendements adoptés jusqu'en 2024, avec
-                                            annotations et références jurisprudentielles...</p>
-                                        <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
-                                            <span class="flex items-center space-x-1">
-                                                <div class="w-3 h-3 flex items-center justify-center">
-                                                    <i class="ri-calendar-line"></i>
-                                                </div>
-                                                <span>1er mars 2024</span>
-                                            </span>
-                                            <span class="flex items-center space-x-1">
-                                                <div class="w-3 h-3 flex items-center justify-center">
-                                                    <i class="ri-government-line"></i>
-                                                </div>
-                                                <span>Conseil Constitutionnel</span>
-                                            </span>
-                                            <span
-                                                class="px-2 py-1 bg-primary/10 text-primary rounded-full">Constitution</span>
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center gap-2 ml-4 flex-wrap sm:flex-nowrap">
-                                        <button
-                                            class="p-2 text-gray-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
-                                            title="Télécharger">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-download-line"></i>
-                                            </div>
-                                        </button>
-                                        <button
-                                            class="p-2 text-gray-500 hover:text-secondary hover:bg-secondary/10 rounded-lg transition-colors"
-                                            title="Partager">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-share-line"></i>
-                                            </div>
-                                        </button>
-                                        <button
-                                            class="result-details p-2 text-gray-500 hover:text-accent hover:bg-accent/10 rounded-lg transition-colors"
-                                            title="Voir détails">
-                                            <div class="w-5 h-5 flex items-center justify-center">
-                                                <i class="ri-eye-line"></i>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="p-6 border-t border-gray-200">
-                            <div class="flex items-center justify-between">
-                                <span class="text-sm text-gray-600">Affichage de 1-5 sur 1,247 résultats</span>
-                                <div class="flex items-center gap-2 flex-wrap">
-                                    <button
-                                        class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">Précédent</button>
-                                    <button
-                                        class="px-2 py-2 sm:px-3 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors !rounded-button whitespace-nowrap">1</button>
-                                    <button
-                                        class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">2</button>
-                                    <button
-                                        class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">3</button>
-                                    <span class="px-1 text-gray-500">...</span>
-                                    <button
-                                        class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">250</button>
-                                    <button
-                                        class="px-2 py-2 sm:px-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors !rounded-button whitespace-nowrap">Suivant</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <div id="favoritesContent" class="hidden bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-                        <div class="flex items-center justify-between mb-6">
-                            <h3 class="text-lg font-semibold text-gray-900">Vos favoris</h3>
-                            <span class="text-sm text-gray-500">3 éléments enregistrés</span>
-                        </div>
-                        <div class="space-y-4">
-                            <div class="favorite-card border border-gray-200 rounded-lg p-4"
-                                data-title="Code du Travail 2024"
-                                data-summary="Version mise à jour du code du travail."
-                                data-date="12 janvier 2024" data-ministry="Ministère du Travail" data-type="Décret">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div>
-                                        <h4 class="text-base font-medium text-gray-900 mb-1">Code du Travail 2024</h4>
-                                        <p class="text-sm text-gray-600">Version mise à jour du code du travail.</p>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <button class="favorite-details text-gray-500 hover:text-primary"
-                                            title="Voir le favori">
-                                            <i class="ri-eye-line text-lg"></i>
-                                        </button>
-                                        <button class="text-accent hover:text-red-600" title="Retirer des favoris"
-                                            onclick="removeFavorite(this)">
-                                            <i class="ri-bookmark-fill text-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="favorite-card border border-gray-200 rounded-lg p-4"
-                                data-title="Loi de Finances 2024"
-                                data-summary="Budget national pour l'exercice 2024."
-                                data-date="28 décembre 2023" data-ministry="Ministère des Finances" data-type="Loi">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div>
-                                        <h4 class="text-base font-medium text-gray-900 mb-1">Loi de Finances 2024</h4>
-                                        <p class="text-sm text-gray-600">Budget national pour l'exercice 2024.</p>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <button class="favorite-details text-gray-500 hover:text-primary"
-                                            title="Voir le favori">
-                                            <i class="ri-eye-line text-lg"></i>
-                                        </button>
-                                        <button class="text-accent hover:text-red-600" title="Retirer des favoris"
-                                            onclick="removeFavorite(this)">
-                                            <i class="ri-bookmark-fill text-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="favorite-card border border-gray-200 rounded-lg p-4"
-                                data-title="Constitution 2024"
-                                data-summary="Version consolidée et annotée."
-                                data-date="1er mars 2024" data-ministry="Conseil Constitutionnel"
-                                data-type="Constitution">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div>
-                                        <h4 class="text-base font-medium text-gray-900 mb-1">Constitution 2024</h4>
-                                        <p class="text-sm text-gray-600">Version consolidée et annotée.</p>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <button class="favorite-details text-gray-500 hover:text-primary"
-                                            title="Voir le favori">
-                                            <i class="ri-eye-line text-lg"></i>
-                                        </button>
-                                        <button class="text-accent hover:text-red-600" title="Retirer des favoris"
-                                            onclick="removeFavorite(this)">
-                                            <i class="ri-bookmark-fill text-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="favorite-card border border-gray-200 rounded-lg p-4"
-                                data-title="Code du Travail 2024"
-                                data-summary="Version mise à jour du code du travail."
-                                data-date="12 janvier 2024" data-ministry="Ministère du Travail" data-type="Décret">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div>
-                                        <h4 class="text-base font-medium text-gray-900 mb-1">Code du Travail 2024</h4>
-                                        <p class="text-sm text-gray-600">Version mise à jour du code du travail.</p>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <button class="favorite-details text-gray-500 hover:text-primary"
-                                            title="Voir le favori">
-                                            <i class="ri-eye-line text-lg"></i>
-                                        </button>
-                                        <button class="text-accent hover:text-red-600" title="Retirer des favoris"
-                                            onclick="removeFavorite(this)">
-                                            <i class="ri-bookmark-fill text-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="favorite-card border border-gray-200 rounded-lg p-4"
-                                data-title="Loi de Finances 2024"
-                                data-summary="Budget national pour l'exercice 2024."
-                                data-date="28 décembre 2023" data-ministry="Ministère des Finances" data-type="Loi">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div>
-                                        <h4 class="text-base font-medium text-gray-900 mb-1">Loi de Finances 2024</h4>
-                                        <p class="text-sm text-gray-600">Budget national pour l'exercice 2024.</p>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <button class="favorite-details text-gray-500 hover:text-primary"
-                                            title="Voir le favori">
-                                            <i class="ri-eye-line text-lg"></i>
-                                        </button>
-                                        <button class="text-accent hover:text-red-600" title="Retirer des favoris"
-                                            onclick="removeFavorite(this)">
-                                            <i class="ri-bookmark-fill text-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="favorite-card border border-gray-200 rounded-lg p-4"
-                                data-title="Constitution 2024"
-                                data-summary="Version consolidée et annotée."
-                                data-date="1er mars 2024" data-ministry="Conseil Constitutionnel"
-                                data-type="Constitution">
-                                <div class="flex items-start justify-between gap-3">
-                                    <div>
-                                        <h4 class="text-base font-medium text-gray-900 mb-1">Constitution 2024</h4>
-                                        <p class="text-sm text-gray-600">Version consolidée et annotée.</p>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <button class="favorite-details text-gray-500 hover:text-primary"
-                                            title="Voir le favori">
-                                            <i class="ri-eye-line text-lg"></i>
-                                        </button>
-                                        <button class="text-accent hover:text-red-600" title="Retirer des favoris"
-                                            onclick="removeFavorite(this)">
-                                            <i class="ri-bookmark-fill text-lg"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="settingsContent" class="hidden bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-6">Paramètres</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-                                <div>
-                                    <div class="text-sm font-medium text-gray-900">Notifications</div>
-                                    <div class="text-xs text-gray-500">Recevoir les alertes par email</div>
-                                </div>
-                                <button id="notifToggle"
-                                    class="px-3 py-2 bg-primary/10 text-primary rounded-lg text-xs !rounded-button"
-                                    onclick="toggleNotifications()">
-                                    Activées
-                                </button>
-                            </div>
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-                                <div>
-                                    <div class="text-sm font-medium text-gray-900">Langue</div>
-                                    <div class="text-xs text-gray-500" id="languageLabel">Français (par défaut)</div>
-                                </div>
-                                <button id="languageToggle"
-                                    class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button"
-                                    onclick="cycleLanguage()">
-                                    Modifier
-                                </button>
-                            </div>
-                            <div class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
-                                <div>
-                                    <div class="text-sm font-medium text-gray-900">Sécurité</div>
-                                    <div class="text-xs text-gray-500">Gestion des accès et clés API</div>
-                                </div>
-                                <button
-                                    class="px-3 py-2 bg-gray-100 text-gray-700 rounded-lg text-xs !rounded-button"
-                                    onclick="openModal('apiModal')">
-                                    Ouvrir
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </main>
+    </div>
+    </main>
     </div>
 
     <!-- Chatbot -->
-    <div class="fixed bottom-6 right-6 w-96 h-96 bg-white rounded-lg shadow-lg border border-gray-200 z-50 flex flex-col"
+    <div class="fixed bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 w-[calc(100vw-2rem)] sm:w-96 max-w-sm sm:max-w-none h-[70vh] sm:h-96 bg-white rounded-lg shadow-lg border border-gray-200 z-50 flex flex-col"
         id="chatWindow">
         <div
             class="flex items-center justify-between p-4 border-b border-gray-200 bg-gradient-to-r from-[#00a650] to-[#00a650] text-white rounded-t-lg">
@@ -820,23 +857,23 @@
             </div>
         </div>
         <div class="p-4 border-t border-gray-200">
-            <div class="flex space-x-2">
+            <div class="flex flex-col sm:flex-row sm:items-center gap-3">
                 <input type="text" placeholder="Posez votre question..."
-                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary"
+                    class="flex-1 w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary"
                     id="chatInput">
                 <button
-                    class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors !rounded-button whitespace-nowrap"
+                    class="w-full sm:w-auto px-4 py-2 bg-primary text-white rounded-lg hover:bg-green-600 transition-colors !rounded-button whitespace-nowrap"
                     onclick="sendMessage()">
                     <div class="w-4 h-4 flex items-center justify-center">
                         <i class="ri-send-plane-line"></i>
                     </div>
                 </button>
             </div>
-            
+
         </div>
     </div>
 
-    <div class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-r from-[#00a650] to-[#00a650] text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer hidden"
+    <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 w-14 h-14 bg-gradient-to-r from-[#00a650] to-[#00a650] text-white rounded-full shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center cursor-pointer hidden"
         id="chatMinimized" onclick="restoreChatbot()">
         <div class="w-6 h-6 flex items-center justify-center">
             <i class="ri-robot-line text-xl"></i>
@@ -845,8 +882,7 @@
 
     <div id="apiModal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4">
         <div class="absolute inset-0 bg-black/50" onclick="closeModal('apiModal')"></div>
-        <div
-            class="relative max-w-xl w-full mx-auto bg-white rounded-xl shadow-lg border border-gray-200 my-auto">
+        <div class="relative max-w-xl w-full mx-auto bg-white rounded-xl shadow-lg border border-gray-200 my-auto">
             <div class="flex items-center justify-between p-5 border-b border-gray-200">
                 <h3 class="text-lg font-semibold text-gray-900">Accès API GOV ID</h3>
                 <button class="text-gray-400 hover:text-gray-600" onclick="closeModal('apiModal')">
